@@ -15,18 +15,15 @@ public class Transaction implements Serializable {
 
 
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
-    //@Column(name="seller_id", nullable = false, updatable = false)
     @JoinColumn(name = "seller_id", nullable = false)
     private User sellerId;
 
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
-    //@Column(name="buyer_id", nullable = false, updatable = false)
     @JoinColumn(name = "buyer_id", nullable = false)
     private User buyerId;
 
 
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
-    //@Column(name="packet_id", nullable = false, updatable = false)
     @JoinColumn(name = "packet_id", nullable = false)
     private Packet packetId;
 

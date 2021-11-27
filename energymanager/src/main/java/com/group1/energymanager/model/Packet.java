@@ -15,7 +15,6 @@ public class Packet implements Serializable {
     private String id;
 
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
-    //@Column(name="owner_id", nullable = false, updatable = false)
     @JoinColumn(name = "owner_id", nullable = false)
     private User userId;
 
