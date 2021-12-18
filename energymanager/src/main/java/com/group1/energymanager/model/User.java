@@ -1,5 +1,9 @@
 package com.group1.energymanager.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+import org.hibernate.annotations.GenericGenerator;
+
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -8,17 +12,20 @@ import java.util.List;
 @Table(name="user")
 public class User {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @Id @GeneratedValue(generator="system-uuid")
+    @GenericGenerator(name="system-uuid", strategy = "uuid")
     @Column(name="user_id", nullable = false, updatable = false)
     private String id;
 
     @OneToMany(mappedBy = "userId", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @JsonManagedReference
     private List<Packet> packets = new ArrayList<Packet>();
 
     @OneToMany(mappedBy = "sellerId", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @JsonManagedReference
     private List<Transaction> sell_transactions = new ArrayList<Transaction>();;
     @OneToMany(mappedBy = "buyerId", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @JsonManagedReference
     private List<Transaction> buy_transactions = new ArrayList<Transaction>();;
 
     private String ragSociale;

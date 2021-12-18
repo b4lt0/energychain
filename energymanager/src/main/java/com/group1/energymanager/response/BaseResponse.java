@@ -4,11 +4,14 @@ import org.springframework.http.HttpStatus;
 
 public class BaseResponse {
     private HttpStatus status;
-    private String errorMsg;
+    private String msg;
 
-    public BaseResponse(HttpStatus status, String errorMsg) {
+    public BaseResponse() {
+    }
+
+    public BaseResponse(HttpStatus status, String msg) {
         this.status = status;
-        this.errorMsg = errorMsg;
+        this.msg = msg;
     }
 
     public HttpStatus getStatus() {
@@ -19,11 +22,11 @@ public class BaseResponse {
         this.status = status;
     }
 
-    public String getErrorMsg() {
-        return errorMsg;
+    public String getMsg() {
+        return msg;
     }
 
-    public void setErrorMsg(String errorMsg) {
-        this.errorMsg = errorMsg;
+    public void setMsg(String msg) {
+        this.msg = msg;
     }
 }

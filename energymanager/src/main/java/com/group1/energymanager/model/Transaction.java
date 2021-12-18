@@ -1,5 +1,8 @@
 package com.group1.energymanager.model;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import org.hibernate.annotations.GenericGenerator;
+
 import javax.persistence.*;
 import java.io.Serializable;
 import java.sql.Timestamp;
@@ -8,23 +11,26 @@ import java.sql.Timestamp;
 @Table(name="transaction")
 public class Transaction implements Serializable {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @Id @GeneratedValue(generator="system-uuid")
+    @GenericGenerator(name="system-uuid", strategy = "uuid")
     @Column(name="transaction_id", nullable = false, updatable = false)
     private String id;
 
 
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name = "seller_id", nullable = false)
+    @JsonBackReference
     private User sellerId;
 
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name = "buyer_id", nullable = false)
+    @JsonBackReference
     private User buyerId;
 
 
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name = "packet_id", nullable = false)
+    @JsonBackReference
     private Packet packetId;
 
     private Timestamp time;

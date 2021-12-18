@@ -20,7 +20,7 @@ public class UserService {
     //public UserService(UserRepository userRepository) {
        // this.userRepository = userRepository;
     //}
-
+    
     public RegistrationResponse addUser(UserRequest userRequest){
         RegistrationResponse resp=new RegistrationResponse();
         BaseResponse result = new BaseResponse(HttpStatus.OK, null);

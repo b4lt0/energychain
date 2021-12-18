@@ -4,7 +4,6 @@ public class RegistrationResponse{
     private BaseResponse result;
     private String userID;
 
-
     public BaseResponse getResult() {
         return result;
     }
