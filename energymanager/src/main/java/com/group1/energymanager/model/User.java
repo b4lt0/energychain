@@ -1,6 +1,5 @@
 package com.group1.energymanager.model;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import org.hibernate.annotations.GenericGenerator;
 
@@ -46,6 +45,9 @@ public class User {
         this.wallet = wallet;
     }
 
+    public User(String userID) {
+    }
+
     public String getId() {
         return id;
     }
@@ -62,16 +64,16 @@ public class User {
         this.packets = packets;
     }
 
-    public List<Transaction> getSell_transactions() {
-        return sell_transactions;
+    public List<Transaction> getSell_transactions(List<Transaction> sell_transactions) {
+        return this.sell_transactions;
     }
 
     public void setSell_transactions(List<Transaction> sell_transactions) {
         this.sell_transactions = sell_transactions;
     }
 
-    public List<Transaction> getBuy_transactions() {
-        return buy_transactions;
+    public List<Transaction> getBuy_transactions(List<Transaction> buy_transactions) {
+        return this.buy_transactions;
     }
 
     public void setBuy_transactions(List<Transaction> buy_transactions) {
