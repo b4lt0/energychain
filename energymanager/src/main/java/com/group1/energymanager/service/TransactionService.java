@@ -69,7 +69,7 @@ public class TransactionService {
         newTransaction.setTime(transactionRequest.getTime());
         transactionRepository.save(newTransaction);
         //popolo la response
-        BaseResponse result = new BaseResponse(HttpStatus.OK, "Transaction " + newTransaction.getId() + " successfully created!");
+        BaseResponse result = new BaseResponse(HttpStatus.CREATED, "Transaction " + newTransaction.getId() + " successfully created!");
         TransactionResponse resp = new TransactionResponse();
         resp.setResult(result);
         resp.setTransaction(newTransaction.toDTO);
