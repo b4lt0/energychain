@@ -31,11 +31,11 @@ public class User {
     private String ragSociale;
     private String username;
     private String password;
-    private Float wallet;
+    private Double wallet;
 
     public User(){ }
 
-    public User(String id, List<Packet> packets, List<Transaction> sell_transactions, List<Transaction> buy_transactions, String ragSociale, String username, String password, Float wallet) {
+    public User(String id, List<Packet> packets, List<Transaction> sell_transactions, List<Transaction> buy_transactions, String ragSociale, String username, String password, Double wallet) {
         this.id = id;
         this.packets = packets;
         this.sell_transactions = sell_transactions;
@@ -44,6 +44,10 @@ public class User {
         this.username = username;
         this.password = password;
         this.wallet = wallet;
+    }
+
+    public User(String id) {
+        this.id=id;
     }
 
     public String getId() {
@@ -102,11 +106,11 @@ public class User {
         this.password = password;
     }
 
-    public Float getWallet() {
+    public Double getWallet() {
         return wallet;
     }
 
-    public void setWallet(Float wallet) {
+    public void setWallet(Double wallet) {
         this.wallet = wallet;
     }
 }

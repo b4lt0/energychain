@@ -1,8 +1,8 @@
 package com.group1.energymanager.response;
 
-public class RegistrationResponse{
+public class DeleteUserResponse {
     private BaseResponse result;
-    private String userID;
+    private String id;
 
     public BaseResponse getResult() {
         return result;
@@ -12,11 +12,11 @@ public class RegistrationResponse{
         this.result = result;
     }
 
-    public String getUserID() {
-        return userID;
+    public String getId() {
+        return id;
     }
 
-    public void setUserID(String userID) {
-        this.userID = userID;
+    public void setId(String id) {
+        this.id = id;
     }
 }

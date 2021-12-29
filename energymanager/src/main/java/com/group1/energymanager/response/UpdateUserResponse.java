@@ -1,23 +1,17 @@
-package com.group1.energymanager.request;
+package com.group1.energymanager.response;
 
-import com.group1.energymanager.model.Packet;
-import com.group1.energymanager.model.Transaction;
-
-import java.util.List;
-
-public class UserRequest {
+public class UpdateUserResponse {
+    private BaseResponse result;
     private String id;
     private String ragSociale;
     private String username;
 
-    public UserRequest(String id, String ragSociale, String username) {
-        this.id = id;
-        this.ragSociale = ragSociale;
-        this.username = username;
+    public BaseResponse getResult() {
+        return result;
     }
 
-    public UserRequest(String id) {
-        this.id = id;
+    public void setResult(BaseResponse result) {
+        this.result = result;
     }
 
     public String getId() {
@@ -28,7 +22,7 @@ public class UserRequest {
         this.id = id;
     }
 
-    public String getRagSociale() {
+    public String getragSociale() {
         return ragSociale;
     }
 
@@ -43,6 +37,4 @@ public class UserRequest {
     public void setUsername(String username) {
         this.username = username;
     }
-
 }
-
