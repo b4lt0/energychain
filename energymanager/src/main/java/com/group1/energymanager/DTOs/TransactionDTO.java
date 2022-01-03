@@ -7,9 +7,9 @@ import java.sql.Timestamp;
 
 public class TransactionDTO {
         private String transactionID;
-        private User sellerId;
-        private User buyerId;
-        private Packet packetId;
+        private String sellerId;
+        private String buyerId;
+        private String packetId;
         private Timestamp time;
 
         public TransactionDTO(String transactionID) {
@@ -19,53 +19,61 @@ public class TransactionDTO {
         public TransactionDTO() {
         }
 
-        public TransactionDTO(String TransactionID, User sellerId, User buyerID, Packet packetID, Timestamp time){
-            this.transactionID = transactionID;
-            this.sellerId= sellerId;
-            this.buyerId = buyerID;
-            this.packetId = packetID;
-            this.time = time;
-        }
-
-        public String getTransactionID() {
-            return transactionID;
-        }
-
-        public void setTransactionID(String transactionID) {
-            this.transactionID = transactionID;
-        }
-
-        public User getSellerId() {
-            return sellerId;
-        }
-
-        public void setSellerId(User sellerId) {
-            this.sellerId = sellerId;
-        }
-
-        public User getBuyerId() {
-            return buyerId;
-        }
-
-        public void setBuyerId(User buyerId) {
-            this.buyerId = buyerId;
-        }
-
-        public Packet getPacketId() {
-            return packetId;
-        }
-
-        public void setPacketId(Packet packetId) {
-            this.packetId = packetId;
-        }
-
-        public Timestamp getTime() {
-            return time;
-        }
-
-        public void setTime(Timestamp time) {
-            this.time = time;
-        }
+    public TransactionDTO(String transactionID, String sellerId, String buyerId, String packetId, Timestamp time) {
+        this.transactionID = transactionID;
+        this.sellerId = sellerId;
+        this.buyerId = buyerId;
+        this.packetId = packetId;
+        this.time = time;
     }
+
+    public TransactionDTO(String TransactionID, User sellerId, User buyerID, Packet packetID, Timestamp time){
+            this.transactionID = transactionID;
+            this.sellerId= sellerId.getId();
+            this.buyerId = buyerID.getId();
+            this.packetId = packetID.getId();
+            this.time = time;
+        }
+
+    public String getTransactionID() {
+        return transactionID;
+    }
+
+    public void setTransactionID(String transactionID) {
+        this.transactionID = transactionID;
+    }
+
+    public String getSellerId() {
+        return sellerId;
+    }
+
+    public void setSellerId(String sellerId) {
+        this.sellerId = sellerId;
+    }
+
+    public String getBuyerId() {
+        return buyerId;
+    }
+
+    public void setBuyerId(String buyerId) {
+        this.buyerId = buyerId;
+    }
+
+    public String getPacketId() {
+        return packetId;
+    }
+
+    public void setPacketId(String packetId) {
+        this.packetId = packetId;
+    }
+
+    public Timestamp getTime() {
+        return time;
+    }
+
+    public void setTime(Timestamp time) {
+        this.time = time;
+    }
+}
 
 

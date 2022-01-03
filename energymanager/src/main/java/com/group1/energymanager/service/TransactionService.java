@@ -1,16 +1,16 @@
 package com.group1.energymanager.service;
 
-import com.group1.energymanager.DTOs.PacketDTO;
 import com.group1.energymanager.DTOs.TransactionDTO;
 import com.group1.energymanager.exceptions.PacketNotFoundException;
 import com.group1.energymanager.exceptions.UserNotFoundException;
-import com.group1.energymanager.model.Packet;
 import com.group1.energymanager.model.Transaction;
 import com.group1.energymanager.repo.PacketRepository;
 import com.group1.energymanager.repo.TransactionRepository;
 import com.group1.energymanager.repo.UserRepository;
 import com.group1.energymanager.request.TransactionRequest;
-import com.group1.energymanager.response.*;
+import com.group1.energymanager.response.BaseResponse;
+import com.group1.energymanager.response.ListTransactionResponse;
+import com.group1.energymanager.response.TransactionResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
@@ -40,12 +40,13 @@ public class TransactionService {
         List<Transaction> transactions = transactionRepository.findAll();
         //creo lista di transactionDTO
         List<TransactionDTO> listTransactionDTO = new ArrayList<>();
-        TransactionDTO tmp = new TransactionDTO();
+        TransactionDTO tmp;
         for(Transaction t : transactions) {
+            tmp = new TransactionDTO();
             tmp.setTransactionID(t.getId());
-            tmp.setSellerId(t.getSellerId());
-            tmp.setBuyerId(t.getBuyerId());
-            tmp.setPacketId(t.getPacketId());
+            tmp.setSellerId(t.getSellerId().getId());
+            tmp.setBuyerId(t.getBuyerId().getId());
+            tmp.setPacketId(t.getPacketId().getId());
             tmp.setTime(t.getTime());
             listTransactionDTO.add(tmp);
         }
@@ -72,7 +73,8 @@ public class TransactionService {
         BaseResponse result = new BaseResponse(HttpStatus.CREATED, "Transaction " + newTransaction.getId() + " successfully created!");
         TransactionResponse resp = new TransactionResponse();
         resp.setResult(result);
-        resp.setTransaction(newTransaction.toDTO);
+        //TODO controlla se serve
+//        resp.setTransaction(newTransaction.toDTO);
         return resp;
     }
 }

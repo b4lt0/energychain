@@ -13,7 +13,7 @@ import java.util.Optional;
 @Table(name="transaction")
 public class Transaction implements Serializable {
 
-    public TransactionDTO toDTO;
+//     public TransactionDTO toDTO;
 
     @Id
     @GeneratedValue(generator="system-uuid")
