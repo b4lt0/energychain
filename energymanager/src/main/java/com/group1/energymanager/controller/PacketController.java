@@ -1,5 +1,6 @@
 package com.group1.energymanager.controller;
 
+import com.group1.energymanager.exceptions.PacketNotFoundException;
 import com.group1.energymanager.request.PacketRequest;
 import com.group1.energymanager.response.ListPacketResponse;
 import com.group1.energymanager.response.PacketResponse;
@@ -31,7 +32,7 @@ public class PacketController {
     * [NOT SOLVED] each object in the json shows nested objects
     * */
     @PostMapping("/add")
-    private ResponseEntity<PacketResponse> createPacket(@RequestBody PacketRequest packetRequest) {
+    private ResponseEntity<PacketResponse> createPacket(@RequestBody PacketRequest packetRequest) throws PacketNotFoundException {
         return new ResponseEntity<PacketResponse>(packetService.addPacket(packetRequest), HttpStatus.OK);
     }
 
@@ -73,7 +74,7 @@ public class PacketController {
      *
      * [IT WORKS] the packet has been found
      * */
-    @GetMapping("/findbyID/")
+    @GetMapping("/findbyID/{packetID}")
     private ResponseEntity<PacketResponse> findbyId(@RequestParam("id") String packetID) {
         return new ResponseEntity<PacketResponse>(packetService.findPacketById(packetID), HttpStatus.OK);
     }
@@ -84,7 +85,7 @@ public class PacketController {
      * [IT WORKS] the packet has been found
      * */
 
-    @DeleteMapping("/delete/")
+    @DeleteMapping("/delete/{packetID}")
     private ResponseEntity<PacketResponse> deletePacket(@RequestParam("id") String packetID) {
         return new ResponseEntity<PacketResponse>(packetService.deletePacket(packetID), HttpStatus.OK);
     }

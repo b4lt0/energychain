@@ -1,6 +1,7 @@
 package com.group1.energymanager.service;
 
 import com.group1.energymanager.DTOs.PacketDTO;
+import com.group1.energymanager.exceptions.PacketNotFoundException;
 import com.group1.energymanager.model.Packet;
 import com.group1.energymanager.model.User;
 import com.group1.energymanager.repo.PacketRepository;
@@ -28,14 +29,14 @@ public class PacketService {
         this.userRepository = userRepository;
     }
 
-    public PacketResponse addPacket(PacketRequest packetRequest){
+    public PacketResponse addPacket(PacketRequest packetRequest) throws PacketNotFoundException {
         PacketResponse resp=new PacketResponse();
         Packet packet = new Packet();
 
         // packet.setId("PAAAA0000"); //non va fatto, viene generato automaticamente
         //*prenderlo dal campo del packet request
         packet.setUserId(userRepository.findById(packetRequest.getUserId())
-                .orElseThrow(()->new RuntimeException("UserNotFoundException")));
+                .orElseThrow(()->new PacketNotFoundException("Packet by id " + packetRequest.getId() + " was not found!")));
         packet.setDescription(packetRequest.getDescription());
         packet.setPrice(packetRequest.getPrice());
         packet.setQuantity(packetRequest.getQuantity());
