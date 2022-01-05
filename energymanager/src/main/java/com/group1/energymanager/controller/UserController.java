@@ -2,6 +2,7 @@ package com.group1.energymanager.controller;
 
 import com.group1.energymanager.exceptions.InsufficientFundsException;
 import com.group1.energymanager.exceptions.UserNotFoundException;
+import com.group1.energymanager.model.User;
 import com.group1.energymanager.request.DepositMoneyRequest;
 import com.group1.energymanager.request.RegistrationRequest;
 import com.group1.energymanager.request.UpdateRequest;
@@ -15,6 +16,10 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpServletRequest;
+import java.security.Principal;
+import java.util.Base64;
+
 @RequestMapping("/user")
 @RestController
 public class UserController {
@@ -22,6 +27,21 @@ public class UserController {
 
     @Autowired
     private UserService userService;
+
+    @RequestMapping("/login")
+    public boolean login(@RequestBody User user) {
+        return
+                user.getUsername().equals("user") && user.getPassword().equals("password");
+    }
+
+    @RequestMapping("/user")
+    public Principal user(HttpServletRequest request) {
+        String authToken = request.getHeader("Authorization")
+                .substring("Basic".length()).trim();
+        return () ->  new String(Base64.getDecoder()
+                .decode(authToken)).split(":")[0];
+    }
+
 
     @PostMapping("/registration")
     private ResponseEntity<RegistrationResponse> registration(@RequestBody RegistrationRequest registrationRequest){
