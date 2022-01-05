@@ -2,8 +2,8 @@ package com.group1.energymanager.service;
 
 import com.group1.energymanager.DTOs.PacketDTO;
 import com.group1.energymanager.exceptions.PacketNotFoundException;
+import com.group1.energymanager.exceptions.UserNotFoundException;
 import com.group1.energymanager.model.Packet;
-import com.group1.energymanager.model.User;
 import com.group1.energymanager.repo.PacketRepository;
 import com.group1.energymanager.repo.UserRepository;
 import com.group1.energymanager.request.PacketRequest;
@@ -12,10 +12,12 @@ import com.group1.energymanager.response.ListPacketResponse;
 import com.group1.energymanager.response.PacketResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class PacketService {
@@ -29,14 +31,23 @@ public class PacketService {
         this.userRepository = userRepository;
     }
 
-    public PacketResponse addPacket(PacketRequest packetRequest) throws PacketNotFoundException {
+    public PacketResponse getPacket(Packet packet){
+//        //costruisco la risposta
+        PacketResponse resp = new PacketResponse();
+        BaseResponse result = new BaseResponse(HttpStatus.OK, "Packet "+packet.getId()+" successfully found!");
+        resp.setPacket(packet.toDTO());
+        resp.setResult(result);
+        return resp;
+    }
+
+    public PacketResponse addPacket(PacketRequest packetRequest) throws UserNotFoundException {
         PacketResponse resp=new PacketResponse();
         Packet packet = new Packet();
 
         // packet.setId("PAAAA0000"); //non va fatto, viene generato automaticamente
         //*prenderlo dal campo del packet request
         packet.setUserId(userRepository.findById(packetRequest.getUserId())
-                .orElseThrow(()->new PacketNotFoundException("Packet by id " + packetRequest.getId() + " was not found!")));
+                .orElseThrow(()->new UserNotFoundException("User by id " + packetRequest.getUserId() + " was not found!")));
         packet.setDescription(packetRequest.getDescription());
         packet.setPrice(packetRequest.getPrice());
         packet.setQuantity(packetRequest.getQuantity());
@@ -52,16 +63,16 @@ public class PacketService {
         return resp;
     }
 
-    public PacketResponse updatePacket(PacketRequest packetRequest){
+    public PacketResponse updatePacket(PacketRequest packetRequest) throws PacketNotFoundException, UserNotFoundException {
         PacketResponse resp=new PacketResponse();
 
         //inserisco a db
         //Packet packet = new Packet(); //[PROVA] il frontend mi riempie gli altri campi che non sono stati modificati
         Packet packet = packetRepository.findById(packetRequest.getId())
-                .orElseThrow(()->new RuntimeException("PacketNotFoundException"));
+                .orElseThrow(()->new PacketNotFoundException("Packet " + packetRequest.getId() + " was not found!"));
         //packet.setId(packetRequest.getId()); no perchè non voglio aggiornare l'id
         packet.setUserId(userRepository.findById(packetRequest.getUserId())
-                .orElseThrow(()->new RuntimeException("UserNotFoundException"))); //da modificare con una vera eccezione
+                .orElseThrow(()->new UserNotFoundException("User " + packetRequest.getUserId() + " was not found!"))); //da modificare con una vera eccezione
         packet.setDescription(packetRequest.getDescription());
         packet.setPrice(packetRequest.getPrice());
         packet.setQuantity(packetRequest.getQuantity());
@@ -100,26 +111,24 @@ public class PacketService {
 
     }
 
-    public PacketResponse deletePacket(String packetID){
+    public PacketResponse deletePacket(String packetID) throws PacketNotFoundException {
         //rimuovo a db
-        PacketDTO packet = new PacketDTO(packetID); //
-        packetRepository.delete(packetRepository.findById(packet.getId()).orElse(new Packet())); //Come faccio a sapere che l'operazione è riuscita?
+        Packet removedPacket = packetRepository.findById(packetID)
+                .orElseThrow(() -> new PacketNotFoundException("Packet " + packetID + " was not found!"));
+         packetRepository.delete(removedPacket);
         //override di equals
 
         //popolo la response da riportatre al controller
         PacketResponse resp = new PacketResponse();
-        BaseResponse result = new BaseResponse(HttpStatus.OK, "Packet "+packet.getId()+" successfully eliminated!");
-        resp.getPacket().setId(packet.getId());
+        BaseResponse result = new BaseResponse(HttpStatus.OK, "Packet "+removedPacket.getId()+" successfully eliminated!");
+        resp.getPacket().setId(removedPacket.getId());
         resp.setResult(result);
         return resp;
     }
-
-    public PacketResponse findPacketById(String packetID){
-        //cerco nel db
+    public PacketResponse findPacketById(String packetID) throws PacketNotFoundException {
         Packet packet = packetRepository.findById(packetID)
-                .orElseThrow(()->new RuntimeException("PacketNotFoundException"));
-
-        //costruisco la risposta
+                .orElseThrow(() -> new PacketNotFoundException("Packet " + packetID + " was not found!"));
+        //popolo response
         PacketResponse resp = new PacketResponse();
         BaseResponse result = new BaseResponse(HttpStatus.OK, "Packet "+packet.getId()+" successfully found!");
         resp.setPacket(packet.toDTO());
@@ -127,3 +136,21 @@ public class PacketService {
         return resp;
     }
 }
+    /*
+
+    public Optional<Packet> findPacketById(String packetID) {
+        return findPacketById(packetID, true);
+    }
+
+    public Optional<Packet> findPacketById(String packetID, boolean checkSoftDeleted) {
+        Optional<Packet> result = Optional.empty();
+        Optional<Packet> packet = packetRepository.findById(packetID);
+        //TODO controllare logica
+        if (packet.isPresent() && (checkSoftDeleted && packet.get().getDeleted() || !checkSoftDeleted)) {
+            result = packet;
+        }
+        return result;
+    }
+
+     */
+

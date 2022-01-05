@@ -1,16 +1,19 @@
 package com.group1.energymanager.controller;
 
 import com.group1.energymanager.exceptions.PacketNotFoundException;
+import com.group1.energymanager.exceptions.UserNotFoundException;
+import com.group1.energymanager.model.Packet;
+import com.group1.energymanager.repo.UserRepository;
 import com.group1.energymanager.request.PacketRequest;
 import com.group1.energymanager.response.ListPacketResponse;
 import com.group1.energymanager.response.PacketResponse;
 import com.group1.energymanager.service.PacketService;
-import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.jpa.repository.support.SimpleJpaRepository;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-    /*[Problems]
+/*[Problems]
      * [SOLVED] 404 not answering to any request : added @Bean to main
      * */
 @RestController
@@ -18,9 +21,11 @@ import org.springframework.web.bind.annotation.*;
 public class PacketController {
 
     private final PacketService packetService;
+    private final UserRepository userRepository;
 
-    public PacketController(PacketService packetService) {
+    public PacketController(PacketService packetService, UserRepository userRepository) {
         this.packetService = packetService;
+        this.userRepository = userRepository;
     }
 
     /*[Problems]
@@ -32,7 +37,10 @@ public class PacketController {
     * [NOT SOLVED] each object in the json shows nested objects
     * */
     @PostMapping("/add")
-    private ResponseEntity<PacketResponse> createPacket(@RequestBody PacketRequest packetRequest) throws PacketNotFoundException {
+    private ResponseEntity<PacketResponse> createPacket(@RequestBody PacketRequest packetRequest) throws UserNotFoundException {
+        Packet packet = new Packet();
+        userRepository.findById(packetRequest.getUserId())
+                .orElseThrow(()->new UserNotFoundException("User by id " + packetRequest.getUserId() + " was not found!"));
         return new ResponseEntity<PacketResponse>(packetService.addPacket(packetRequest), HttpStatus.OK);
     }
 
@@ -65,7 +73,7 @@ public class PacketController {
      * [NOT SOLVED] each object in the json shows nested objects
      * */
     @PostMapping("/update")
-    private ResponseEntity<PacketResponse> updatePacket(@RequestBody PacketRequest packetRequest) {
+    private ResponseEntity<PacketResponse> updatePacket(@RequestBody PacketRequest packetRequest) throws UserNotFoundException, PacketNotFoundException {
         return new ResponseEntity<PacketResponse>(packetService.updatePacket(packetRequest), HttpStatus.OK);
     }
 
@@ -75,7 +83,7 @@ public class PacketController {
      * [IT WORKS] the packet has been found
      * */
     @GetMapping("/findbyID/{packetID}")
-    private ResponseEntity<PacketResponse> findbyId(@RequestParam("id") String packetID) {
+    private ResponseEntity<PacketResponse> findbyId(@PathVariable("packetID") String packetID) throws PacketNotFoundException {
         return new ResponseEntity<PacketResponse>(packetService.findPacketById(packetID), HttpStatus.OK);
     }
 
@@ -86,7 +94,7 @@ public class PacketController {
      * */
 
     @DeleteMapping("/delete/{packetID}")
-    private ResponseEntity<PacketResponse> deletePacket(@RequestParam("id") String packetID) {
+    private ResponseEntity<PacketResponse> deletePacket(@PathVariable("packetID") String packetID) throws PacketNotFoundException {
         return new ResponseEntity<PacketResponse>(packetService.deletePacket(packetID), HttpStatus.OK);
     }
 

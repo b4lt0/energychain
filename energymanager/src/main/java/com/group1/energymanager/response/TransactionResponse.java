@@ -11,11 +11,12 @@ public class TransactionResponse {
             this.transaction = transaction;
         }
 
-        public TransactionResponse() {
+    public TransactionResponse() {
 
-        }
+    }
 
-        public BaseResponse getResult() {
+
+    public BaseResponse getResult() {
             return result;
         }
 

@@ -19,6 +19,7 @@ import org.springframework.web.bind.annotation.*;
 @RestController
 public class UserController {
 
+
     @Autowired
     private UserService userService;
 
@@ -33,12 +34,15 @@ public class UserController {
     }
 
     @PutMapping("/deposit")
-    private ResponseEntity<DepositOnWalletResponse> deposit(@RequestBody DepositMoneyRequest depositMoneyRequest) throws UserNotFoundException, InsufficientFundsException {
+    private ResponseEntity<DepositOnWalletResponse> deposit(@RequestBody DepositMoneyRequest depositMoneyRequest) throws UserNotFoundException, InsufficientFundsException {//throws UserNotFoundException, InsufficientFundsException {
         return new ResponseEntity<DepositOnWalletResponse>(userService.depositMoney(depositMoneyRequest), HttpStatus.OK);
     }
 
     @DeleteMapping("/delete/{userID}")
-    public ResponseEntity<DeleteUserResponse> deleteUser(@PathVariable String userID) throws UserNotFoundException {
+    public ResponseEntity<DeleteUserResponse> deleteUser(@PathVariable("userID") String userID) throws UserNotFoundException {
         return new ResponseEntity<DeleteUserResponse>(userService.deleteUser(userID), HttpStatus.OK);
     }
+
+
+
 }

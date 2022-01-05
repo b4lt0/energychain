@@ -1,24 +1,25 @@
 package com.group1.energymanager.request;
 
 public class UpdateRequest {
-    private String userID;
+    private String id;
     private String ragSociale;
     private String username;
     private String password;
 
 
-    public UpdateRequest(String userID, String ragSociale, String username, String password) {
+    public UpdateRequest(String id, String ragSociale, String username, String password) {
+        this.id = id;
         this.ragSociale = ragSociale;
         this.username = username;
         this.password = password;
     }
 
-    public String getUserID() {
-        return userID;
+    public String getId() {
+        return id;
     }
 
-    public void setUserID(String userID) {
-        this.userID = userID;
+    public void setId(String id) {
+        this.id = id;
     }
 
     public String getRagSociale() {
