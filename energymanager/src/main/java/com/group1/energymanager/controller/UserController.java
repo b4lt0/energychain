@@ -1,9 +1,11 @@
 package com.group1.energymanager.controller;
 
 //import com.group1.energymanager.exceptions.UserNotFoundException;
-import com.group1.energymanager.request.DepositRequest;
+import com.group1.energymanager.exceptions.InsufficientFundsException;
+import com.group1.energymanager.exceptions.UserNotFoundException;
+import com.group1.energymanager.request.DepositMoneyRequest;
 import com.group1.energymanager.request.RegistrationRequest;
-import com.group1.energymanager.request.UserRequest;
+import com.group1.energymanager.request.UpdateRequest;
 import com.group1.energymanager.response.DeleteUserResponse;
 import com.group1.energymanager.response.DepositOnWalletResponse;
 import com.group1.energymanager.response.RegistrationResponse;
@@ -28,15 +30,15 @@ public class UserController {
         return new ResponseEntity<RegistrationResponse>(userService.addUser(registrationRequest), HttpStatus.CREATED);
     }
     @PutMapping("/update")
-    private ResponseEntity<UpdateUserResponse> updateUser(@RequestBody UserRequest userRequest) {//throws UserNotFoundException {
-        return new ResponseEntity<UpdateUserResponse>(userService.updateUser(userRequest), HttpStatus.OK);
+    private ResponseEntity<UpdateUserResponse> updateUser(@RequestBody UpdateRequest updateRequest) throws UserNotFoundException {
+        return new ResponseEntity<UpdateUserResponse>(userService.updateUser(updateRequest), HttpStatus.OK);
     }
     @PutMapping("/deposit")
-    private ResponseEntity<DepositOnWalletResponse> deposit(@RequestBody DepositRequest depositRequest) {//throws UserNotFoundException {
+    private ResponseEntity<DepositOnWalletResponse> deposit(@RequestBody DepositMoneyRequest depositRequest) throws UserNotFoundException, InsufficientFundsException {
         return new ResponseEntity<DepositOnWalletResponse>(userService.depositMoney(depositRequest), HttpStatus.OK);
     }
     @DeleteMapping("/delete/{userID}")
-    public ResponseEntity<DeleteUserResponse> deleteUser(@PathVariable String userID) {//throws UserNotFoundException {
+    public ResponseEntity<DeleteUserResponse> deleteUser(@PathVariable String userID) throws UserNotFoundException {
         return new ResponseEntity<DeleteUserResponse>(userService.deleteUser(userID), HttpStatus.OK);
     }
 }

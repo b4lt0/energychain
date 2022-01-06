@@ -1,6 +1,7 @@
 package com.group1.energymanager.model;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.group1.energymanager.DTOs.TransactionDTO;
 import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
@@ -38,12 +39,12 @@ public class Transaction implements Serializable {
     public Transaction() {
     }
 
-    public Transaction(String id, User sellerId, User buyerId, Packet packetId, Timestamp time) {
+    public Transaction(String id, User sellerId, User buyerId, Packet packetId) {
         this.id = id;
         this.sellerId = sellerId;
         this.buyerId = buyerId;
         this.packetId = packetId;
-        this.time = time;
+        this.time = new Timestamp(System.currentTimeMillis());
     }
 
     public String getId() {
@@ -84,5 +85,9 @@ public class Transaction implements Serializable {
 
     public void setTime(Timestamp time) {
         this.time = time;
+    }
+
+    public TransactionDTO toDTO() {
+        return new TransactionDTO(this.id, this.sellerId, this.buyerId, this.packetId, this.time);
     }
 }
