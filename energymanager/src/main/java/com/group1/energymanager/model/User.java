@@ -5,15 +5,18 @@ import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 @Entity
 @Table(name="user")
 public class User {
 
-    @Id @GeneratedValue(generator="system-uuid")
-    @GenericGenerator(name="system-uuid", strategy = "uuid")
-    @Column(name="user_id", nullable = false, updatable = false)
+    @Id
+    @GeneratedValue(generator = "system-uuid")
+    @GenericGenerator(name = "system-uuid", strategy = "uuid")
+    @Column(name = "user_id", nullable = false, updatable = false)
     private String id;
 
     @OneToMany(mappedBy = "userId", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
@@ -22,19 +25,28 @@ public class User {
 
     @OneToMany(mappedBy = "sellerId", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     @JsonManagedReference
-    private List<Transaction> sell_transactions = new ArrayList<Transaction>();;
+    private List<Transaction> sell_transactions = new ArrayList<Transaction>();
+    ;
     @OneToMany(mappedBy = "buyerId", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     @JsonManagedReference
-    private List<Transaction> buy_transactions = new ArrayList<Transaction>();;
+    private List<Transaction> buy_transactions = new ArrayList<Transaction>();
+    ;
+
+    @ManyToMany(fetch = FetchType.LAZY)
+    @JoinTable(name = "user_roles",
+            joinColumns = @JoinColumn(name = "user_id"),
+            inverseJoinColumns = @JoinColumn(name = "role_id"))
+    private Set<Role> roles = new HashSet<>();
 
     private String ragSociale;
     private String username;
     private String password;
     private float wallet;
 
-    public User(){ }
+    public User() {
+    }
 
-    public User(String id, List<Packet> packets, List<Transaction> sell_transactions, List<Transaction> buy_transactions, String ragSociale, String username, String password, float wallet) {
+    public User(String id, List<Packet> packets, List<Transaction> sell_transactions, List<Transaction> buy_transactions, String ragSociale, String username, String password, float wallet, Set<Role> roles) {
         this.id = id;
         this.packets = packets;
         this.sell_transactions = sell_transactions;
@@ -43,10 +55,19 @@ public class User {
         this.username = username;
         this.password = password;
         this.wallet = wallet;
+        this.roles = roles;
     }
 
     public User(String userID) {
     }
+
+    public User(String username, String password, String ragSociale, float wallet) {
+        this.username = username;
+        this.password = password;
+        this.ragSociale = ragSociale;
+        this.wallet = wallet;
+    }
+
 
     public String getId() {
         return id;
@@ -110,5 +131,13 @@ public class User {
 
     public void setWallet(float wallet) {
         this.wallet = wallet;
+    }
+
+    public Set<Role> getRoles() {
+        return roles;
+    }
+
+    public void setRoles(Set<Role> roles) {
+        this.roles = roles;
     }
 }

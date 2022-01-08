@@ -28,6 +28,8 @@ public class UserController {
     @Autowired
     private UserService userService;
 
+    /*
+
     @RequestMapping("/login")
     public boolean login(@RequestBody User user) {
         return
@@ -42,7 +44,7 @@ public class UserController {
                 .decode(authToken)).split(":")[0];
     }
 
-
+*/
     @PostMapping("/registration")
     private ResponseEntity<RegistrationResponse> registration(@RequestBody RegistrationRequest registrationRequest){
         return new ResponseEntity<RegistrationResponse>(userService.addUser(registrationRequest), HttpStatus.CREATED);
