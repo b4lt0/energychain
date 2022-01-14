@@ -25,10 +25,7 @@ public class UserService {
         this.userRepository = userRepository;
     }
 
-    //public UserService(UserRepository userRepository) {
-    // this.userRepository = userRepository;
-    //}
-
+    /*
     public RegistrationResponse addUser(RegistrationRequest registrationRequest) {
         //inserisco a db
         User newUser = new User();
@@ -47,6 +44,8 @@ public class UserService {
         resp.setResult(result);
         return resp;
     }
+
+     */
 
     public UpdateUserResponse updateUser(UpdateRequest updateRequest) throws UserNotFoundException { //occorre gestire l'eccezione in caso di utente non trovato o id non presente
         //Vedo se l'utente è presente nel db, in caso affermativo lo aggiorno
@@ -86,7 +85,7 @@ public class UserService {
         userRepository.save(user);
         //popolo la response
         DepositOnWalletResponse resp = new DepositOnWalletResponse();
-        BaseResponse result = new BaseResponse(HttpStatus.OK, "User" + user.getId() + " has " + user.getWallet() + " $ on personal portfolio");
+        BaseResponse result = new BaseResponse(HttpStatus.OK, "User " + user.getId() + " has " + user.getWallet() + " $ on personal portfolio");
         resp.setId(user.getId());
         resp.setWallet(user.getWallet());
         resp.setResult(result);

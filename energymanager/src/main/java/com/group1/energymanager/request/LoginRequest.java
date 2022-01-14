@@ -1,12 +1,13 @@
 package com.group1.energymanager.request;
 
+import javax.validation.constraints.NotBlank;
 
-    public class LoginRequest {
+public class LoginRequest {
+    @NotBlank
+    private String username;
 
-        private String username;
-
-
-        private String password;
+    @NotBlank
+    private String password;
 
         public String getUsername() {
             return username;

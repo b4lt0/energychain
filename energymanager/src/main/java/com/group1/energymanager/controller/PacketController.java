@@ -38,9 +38,6 @@ public class PacketController {
     * */
     @PostMapping("/add")
     private ResponseEntity<PacketResponse> createPacket(@RequestBody PacketRequest packetRequest) throws UserNotFoundException {
-        Packet packet = new Packet();
-        userRepository.findById(packetRequest.getUserId())
-                .orElseThrow(()->new UserNotFoundException("User by id " + packetRequest.getUserId() + " was not found!"));
         return new ResponseEntity<PacketResponse>(packetService.addPacket(packetRequest), HttpStatus.OK);
     }
 

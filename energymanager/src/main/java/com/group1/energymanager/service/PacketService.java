@@ -31,14 +31,6 @@ public class PacketService {
         this.userRepository = userRepository;
     }
 
-    public PacketResponse getPacket(Packet packet){
-//        //costruisco la risposta
-        PacketResponse resp = new PacketResponse();
-        BaseResponse result = new BaseResponse(HttpStatus.OK, "Packet "+packet.getId()+" successfully found!");
-        resp.setPacket(packet.toDTO());
-        resp.setResult(result);
-        return resp;
-    }
 
     public PacketResponse addPacket(PacketRequest packetRequest) throws UserNotFoundException {
         PacketResponse resp=new PacketResponse();

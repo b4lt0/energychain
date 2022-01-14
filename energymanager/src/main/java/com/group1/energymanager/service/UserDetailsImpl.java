@@ -1,8 +1,6 @@
 package com.group1.energymanager.service;
 
-import java.util.Collection;
-import java.util.List;
-import java.util.Objects;
+import java.util.*;
 import java.util.stream.Collectors;
 
 import com.group1.energymanager.model.User;
@@ -17,38 +15,33 @@ public class UserDetailsImpl implements UserDetails {
 
     private String id;
 
-    private String ragSociale;
-
     private String username;
 
-    private float wallet;
+    private String email;
 
     @JsonIgnore
     private String password;
 
     private Collection<? extends GrantedAuthority> authorities;
 
-    public UserDetailsImpl(String id, String ragSociale, String username, String password, float wallet,
+    public UserDetailsImpl(String id, String username, String email, String password,
                            Collection<? extends GrantedAuthority> authorities) {
         this.id = id;
-        this.ragSociale = ragSociale;
         this.username = username;
+        this.email = email;
         this.password = password;
-        this.wallet = wallet;
         this.authorities = authorities;
     }
 
     public static UserDetailsImpl build(User user) {
-        List<GrantedAuthority> authorities = user.getRoles().stream()
-                .map(role -> new SimpleGrantedAuthority(role.getName().name()))
-                .collect(Collectors.toList());
+        List<GrantedAuthority> authorities = Collections
+                .singletonList(new SimpleGrantedAuthority(user.getRole().name()));
 
         return new UserDetailsImpl(
                 user.getId(),
-                user.getRagSociale(),
                 user.getUsername(),
+                user.getEmail(),
                 user.getPassword(),
-                user.getWallet(),
                 authorities);
     }
 
@@ -61,12 +54,8 @@ public class UserDetailsImpl implements UserDetails {
         return id;
     }
 
-    public String getRagSociale() {
-        return ragSociale;
-    }
-
-    public float getWallet(){
-        return wallet;
+    public String getEmail() {
+        return email;
     }
 
     @Override

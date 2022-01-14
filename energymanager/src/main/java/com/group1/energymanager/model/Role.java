@@ -1,4 +1,4 @@
-package com.group1.energymanager.model;
+/*package com.group1.energymanager.model;
 
 import javax.persistence.*;
 
@@ -36,4 +36,4 @@ import javax.persistence.*;
         public void setName(ERole name) {
             this.name = name;
         }
-    }
+    }*/

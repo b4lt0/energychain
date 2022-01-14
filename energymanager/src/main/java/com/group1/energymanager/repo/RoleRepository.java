@@ -1,4 +1,4 @@
-package com.group1.energymanager.repo;
+/*package com.group1.energymanager.repo;
 
 import java.util.Optional;
 
@@ -8,8 +8,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
 
-    @Repository
-    public interface RoleRepository extends JpaRepository<Role, Long> {
-        Optional<Role> findByName(ERole name);
-    }
-
+@Repository
+public interface RoleRepository extends JpaRepository<Role, String> {
+    Optional<Role> findByName(ERole name);
+}*/

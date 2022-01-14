@@ -2,23 +2,16 @@ package com.group1.energymanager.controller;
 
 import com.group1.energymanager.exceptions.InsufficientFundsException;
 import com.group1.energymanager.exceptions.UserNotFoundException;
-import com.group1.energymanager.model.User;
 import com.group1.energymanager.request.DepositMoneyRequest;
-import com.group1.energymanager.request.RegistrationRequest;
 import com.group1.energymanager.request.UpdateRequest;
 import com.group1.energymanager.response.DeleteUserResponse;
 import com.group1.energymanager.response.DepositOnWalletResponse;
-import com.group1.energymanager.response.RegistrationResponse;
 import com.group1.energymanager.response.UpdateUserResponse;
 import com.group1.energymanager.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-
-import javax.servlet.http.HttpServletRequest;
-import java.security.Principal;
-import java.util.Base64;
 
 @RequestMapping("/user")
 @RestController
@@ -44,11 +37,13 @@ public class UserController {
                 .decode(authToken)).split(":")[0];
     }
 
-*/
+
     @PostMapping("/registration")
     private ResponseEntity<RegistrationResponse> registration(@RequestBody RegistrationRequest registrationRequest){
         return new ResponseEntity<RegistrationResponse>(userService.addUser(registrationRequest), HttpStatus.CREATED);
     }
+
+     */
 
     @PutMapping("/update")
     private ResponseEntity<UpdateUserResponse> updateUser(@RequestBody UpdateRequest updateRequest) throws UserNotFoundException {
