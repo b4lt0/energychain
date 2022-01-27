@@ -78,16 +78,8 @@ public class AuthController {
                 signUpRequest.getEmail(),
                 encoder.encode(signUpRequest.getPassword()));
 
-
-        switch (signUpRequest.getRole()) {
-            case ROLE_ADMIN:
-            case ROLE_USER:
-                user.setRole(signUpRequest.getRole());
-                break;
-            default:
                 user.setRole(ERole.ROLE_USER);
-                break;
-        }
+
 
         userRepository.save(user);
         return ResponseEntity.ok(new MessageResponse("User registered successfully!"));

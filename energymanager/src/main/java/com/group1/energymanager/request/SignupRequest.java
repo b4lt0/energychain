@@ -16,7 +16,6 @@ public class SignupRequest {
     @Email
     private String email;
 
-    private ERole role;
 
     @NotBlank
     @Size(min = 6, max = 40)
@@ -46,11 +45,4 @@ public class SignupRequest {
         this.password = password;
     }
 
-    public ERole getRole() {
-        return this.role;
-    }
-
-    public void setRole(ERole role) {
-        this.role = role;
-    }
 }
