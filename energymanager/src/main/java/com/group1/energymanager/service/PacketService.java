@@ -40,6 +40,7 @@ public class PacketService {
         //*prenderlo dal campo del packet request
         packet.setUserId(userRepository.findById(packetRequest.getUserId())
                 .orElseThrow(()->new UserNotFoundException("User by id " + packetRequest.getUserId() + " was not found!")));
+        packet.setTitle(packetRequest.getTitle());
         packet.setDescription(packetRequest.getDescription());
         packet.setPrice(packetRequest.getPrice());
         packet.setQuantity(packetRequest.getQuantity());
@@ -65,6 +66,7 @@ public class PacketService {
         //packet.setId(packetRequest.getId()); no perchè non voglio aggiornare l'id
         packet.setUserId(userRepository.findById(packetRequest.getUserId())
                 .orElseThrow(()->new UserNotFoundException("User " + packetRequest.getUserId() + " was not found!"))); //da modificare con una vera eccezione
+        packet.setTitle(packetRequest.getTitle());
         packet.setDescription(packetRequest.getDescription());
         packet.setPrice(packetRequest.getPrice());
         packet.setQuantity(packetRequest.getQuantity());
@@ -79,7 +81,7 @@ public class PacketService {
         resp.setResult(result);
         return resp;
     }
-
+/*
     public ListPacketResponse getAllPackets(){
         ListPacketResponse resp = new ListPacketResponse();
         //recupero pacchetti dal db
@@ -101,6 +103,16 @@ public class PacketService {
         resp.setResult(result);
         return resp;
 
+    }
+
+ */
+    public ListPacketResponse findAllPackets() {
+        ListPacketResponse resp = new ListPacketResponse();
+        List<Packet> packets = packetRepository.findAll();
+        BaseResponse result = new BaseResponse(HttpStatus.OK, "Found List of Packets!");
+        resp.setListPacket(packets);
+        resp.setResult(result);
+        return resp;
     }
 
     public PacketResponse deletePacket(String packetID) throws PacketNotFoundException {

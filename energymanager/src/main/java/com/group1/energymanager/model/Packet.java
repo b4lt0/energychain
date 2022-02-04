@@ -31,7 +31,7 @@ public class Packet implements Serializable {
     @JsonManagedReference
     private List<Transaction> transactions = new ArrayList<Transaction>();
 
-
+    private String title;
     private String description;
     private Long quantity;
     private Double price;
@@ -44,10 +44,11 @@ public class Packet implements Serializable {
         this.id = id;
     }
 
-    public Packet(String id, User userId, List<Transaction> transactions, String description, Long quantity, Double price, Type type) {
+    public Packet(String id, User userId, List<Transaction> transactions,String title,  String description, Long quantity, Double price, Type type) {
         this.id = id;
         this.userId = userId;
         this.transactions = transactions;
+        this.title = title;
         this.description = description;
         this.quantity = quantity;
         this.price = price;
@@ -55,7 +56,7 @@ public class Packet implements Serializable {
     }
 
     public PacketDTO toDTO() {
-        final PacketDTO packetDTO = new PacketDTO(this.id, this.userId, this.description,
+        final PacketDTO packetDTO = new PacketDTO(this.id, this.userId, this.title, this.description,
                 this.quantity, this.price, this.type);
         return packetDTO;
     }
@@ -84,6 +85,14 @@ public class Packet implements Serializable {
 
     public void setTransactions(List<Transaction> transactions) {
         this.transactions = transactions;
+    }
+
+    public String getTitle(){
+        return title;
+    }
+
+    public void setTitle(String title){
+        this.title = title;
     }
 
     public String getDescription() {

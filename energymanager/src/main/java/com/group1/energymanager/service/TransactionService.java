@@ -1,14 +1,17 @@
 package com.group1.energymanager.service;
 
+import com.group1.energymanager.DTOs.PacketDTO;
 import com.group1.energymanager.DTOs.TransactionDTO;
 import com.group1.energymanager.exceptions.PacketNotFoundException;
 import com.group1.energymanager.exceptions.UserNotFoundException;
+import com.group1.energymanager.model.Packet;
 import com.group1.energymanager.model.Transaction;
 import com.group1.energymanager.repo.PacketRepository;
 import com.group1.energymanager.repo.TransactionRepository;
 import com.group1.energymanager.repo.UserRepository;
 import com.group1.energymanager.request.TransactionRequest;
 import com.group1.energymanager.response.BaseResponse;
+import com.group1.energymanager.response.ListPacketResponse;
 import com.group1.energymanager.response.ListTransactionResponse;
 import com.group1.energymanager.response.TransactionResponse;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -59,6 +62,7 @@ public class TransactionService {
         resp.setResult(result);
         return resp;
     }
+
 
     public TransactionResponse addTransaction(TransactionRequest transactionRequest) throws UserNotFoundException, PacketNotFoundException {
         //creo nuova transazione nel db

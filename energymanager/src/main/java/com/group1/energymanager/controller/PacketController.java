@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.*;
 /*[Problems]
      * [SOLVED] 404 not answering to any request : added @Bean to main
      * */
+@CrossOrigin(origins = "http://localhost:4200")
 @RestController
 @RequestMapping("/packet")
 public class PacketController {
@@ -69,7 +70,7 @@ public class PacketController {
      * [IT WORKS] the values are being updated
      * [NOT SOLVED] each object in the json shows nested objects
      * */
-    @PostMapping("/update")
+    @PutMapping ("/update")
     private ResponseEntity<PacketResponse> updatePacket(@RequestBody PacketRequest packetRequest) throws UserNotFoundException, PacketNotFoundException {
         return new ResponseEntity<PacketResponse>(packetService.updatePacket(packetRequest), HttpStatus.OK);
     }
@@ -103,6 +104,6 @@ public class PacketController {
      * */
     @GetMapping("/all")
     private ResponseEntity<ListPacketResponse> findPackets() {
-        return new ResponseEntity<ListPacketResponse>(packetService.getAllPackets(), HttpStatus.OK);
+        return new ResponseEntity<ListPacketResponse>(packetService.findAllPackets(), HttpStatus.OK);
     }
 }

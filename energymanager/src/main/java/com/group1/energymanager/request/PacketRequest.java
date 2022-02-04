@@ -5,14 +5,16 @@ import com.group1.energymanager.model.User;
 public class PacketRequest {
     private String id;
     private String userId;
+    private String title;
     private String description;
     private Long quantity;
     private Double price;
     private Type type;
 
-    public PacketRequest(String id, String userId, String description, Long quantity, Double price, Type type) {
+    public PacketRequest(String id, String userId,String title, String description, Long quantity, Double price, Type type) {
         this.id = id;
         this.userId = userId;
+        this.title = title;
         this.description = description;
         this.quantity = quantity;
         this.price = price;
@@ -37,6 +39,14 @@ public class PacketRequest {
 
     public void setUser(String userId) {
         this.userId = userId;
+    }
+
+    public String getTitle() {
+        return title;
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
     }
 
     public String getDescription() {

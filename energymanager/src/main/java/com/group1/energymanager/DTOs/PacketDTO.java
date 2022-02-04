@@ -6,6 +6,7 @@ public class PacketDTO {
     //private BaseResponse result;
     private String id;
     private User userId;
+    private String title;
     private String description;
     private Long quantity;
     private Double price;
@@ -17,9 +18,10 @@ public class PacketDTO {
 
     public PacketDTO() { }
 
-    public PacketDTO(String id, User userId, String description, Long quantity, Double price, Type type) {
+    public PacketDTO(String id, User userId,String title, String description, Long quantity, Double price, Type type) {
         this.id = id;
         this.userId = userId;
+        this.title = title;
         this.description = description;
         this.quantity = quantity;
         this.price = price;
@@ -47,6 +49,14 @@ public class PacketDTO {
 
     public void setUserId(User userId) {
         this.userId = userId;
+    }
+
+    public String getTitle(){
+        return title;
+    }
+
+    public void setTitle(String title){
+        this.title = title;
     }
 
     public String getDescription() {
