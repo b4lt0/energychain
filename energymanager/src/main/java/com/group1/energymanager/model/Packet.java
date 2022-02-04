@@ -1,7 +1,6 @@
 package com.group1.energymanager.model;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import com.group1.energymanager.DTOs.PacketDTO;
 import org.hibernate.annotations.GenericGenerator;
@@ -25,7 +24,7 @@ public class Packet implements Serializable {
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name = "owner_id", nullable = false)
     @JsonBackReference
-    private User userId;
+    private User user;
 
     @OneToMany(mappedBy = "packetId", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     @JsonManagedReference
@@ -44,9 +43,9 @@ public class Packet implements Serializable {
         this.id = id;
     }
 
-    public Packet(String id, User userId, List<Transaction> transactions,String title,  String description, Long quantity, Double price, Type type) {
+    public Packet(String id, User user, List<Transaction> transactions,String title,  String description, Long quantity, Double price, Type type) {
         this.id = id;
-        this.userId = userId;
+        this.user = user;
         this.transactions = transactions;
         this.title = title;
         this.description = description;
@@ -56,7 +55,7 @@ public class Packet implements Serializable {
     }
 
     public PacketDTO toDTO() {
-        final PacketDTO packetDTO = new PacketDTO(this.id, this.userId, this.title, this.description,
+        final PacketDTO packetDTO = new PacketDTO(this.id, this.user, this.title, this.description,
                 this.quantity, this.price, this.type);
         return packetDTO;
     }
@@ -71,12 +70,12 @@ public class Packet implements Serializable {
         this.id = id;
     }
 
-    public User getUserId() {
-        return userId;
+    public User getUser() {
+        return user;
     }
 
-    public void setUserId(User userId) {
-        this.userId = userId;
+    public void setUser(User user) {
+        this.user = user;
     }
 
     public List<Transaction> getTransactions() {

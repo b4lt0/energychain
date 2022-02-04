@@ -1,6 +1,5 @@
 package com.group1.energymanager.service;
 
-import com.group1.energymanager.DTOs.PacketDTO;
 import com.group1.energymanager.exceptions.PacketNotFoundException;
 import com.group1.energymanager.exceptions.UserNotFoundException;
 import com.group1.energymanager.model.Packet;
@@ -12,12 +11,9 @@ import com.group1.energymanager.response.ListPacketResponse;
 import com.group1.energymanager.response.PacketResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
 
 @Service
 public class PacketService {
@@ -38,7 +34,7 @@ public class PacketService {
 
         // packet.setId("PAAAA0000"); //non va fatto, viene generato automaticamente
         //*prenderlo dal campo del packet request
-        packet.setUserId(userRepository.findById(packetRequest.getUserId())
+        packet.setUser(userRepository.findById(packetRequest.getUserId())
                 .orElseThrow(()->new UserNotFoundException("User by id " + packetRequest.getUserId() + " was not found!")));
         packet.setTitle(packetRequest.getTitle());
         packet.setDescription(packetRequest.getDescription());
@@ -64,7 +60,7 @@ public class PacketService {
         Packet packet = packetRepository.findById(packetRequest.getId())
                 .orElseThrow(()->new PacketNotFoundException("Packet " + packetRequest.getId() + " was not found!"));
         //packet.setId(packetRequest.getId()); no perchè non voglio aggiornare l'id
-        packet.setUserId(userRepository.findById(packetRequest.getUserId())
+        packet.setUser(userRepository.findById(packetRequest.getUserId())
                 .orElseThrow(()->new UserNotFoundException("User " + packetRequest.getUserId() + " was not found!"))); //da modificare con una vera eccezione
         packet.setTitle(packetRequest.getTitle());
         packet.setDescription(packetRequest.getDescription());
