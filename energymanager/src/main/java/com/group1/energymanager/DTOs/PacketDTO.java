@@ -5,7 +5,7 @@ import com.group1.energymanager.model.User;
 public class PacketDTO {
     //private BaseResponse result;
     private String id;
-    private User userId;
+    private User owner;
     private String title;
     private String description;
     private Long quantity;
@@ -18,9 +18,9 @@ public class PacketDTO {
 
     public PacketDTO() { }
 
-    public PacketDTO(String id, User userId,String title, String description, Long quantity, Double price, Type type) {
+    public PacketDTO(String id, User owner,String title, String description, Long quantity, Double price, Type type) {
         this.id = id;
-        this.userId = userId;
+        this.owner = owner;
         this.title = title;
         this.description = description;
         this.quantity = quantity;
@@ -43,12 +43,12 @@ public class PacketDTO {
         this.id = id;
     }
 
-    public User getUserId() {
-        return userId;
+    public User getOwner() {
+        return owner;
     }
 
-    public void setUserId(User userId) {
-        this.userId = userId;
+    public void setOwner(User owner) {
+        this.owner = owner;
     }
 
     public String getTitle(){

@@ -1,19 +1,18 @@
 package com.group1.energymanager.request;
 import com.group1.energymanager.model.Type;
-import com.group1.energymanager.model.User;
 
 public class PacketRequest {
     private String id;
-    private String userId;
+    private String owner;
     private String title;
     private String description;
     private Long quantity;
     private Double price;
     private Type type;
 
-    public PacketRequest(String id, String userId,String title, String description, Long quantity, Double price, Type type) {
+    public PacketRequest(String id, String owner, String title, String description, Long quantity, Double price, Type type) {
         this.id = id;
-        this.userId = userId;
+        this.owner = owner;
         this.title = title;
         this.description = description;
         this.quantity = quantity;
@@ -33,12 +32,12 @@ public class PacketRequest {
         this.id = id;
     }
 
-    public String getUserId() {
-        return userId;
+    public String getOwner() {
+        return owner;
     }
 
-    public void setUser(String userId) {
-        this.userId = userId;
+    public void setOwner(String owner) {
+        this.owner = owner;
     }
 
     public String getTitle() {

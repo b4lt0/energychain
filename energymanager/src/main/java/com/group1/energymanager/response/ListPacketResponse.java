@@ -1,13 +1,12 @@
 package com.group1.energymanager.response;
 
 import com.group1.energymanager.DTOs.PacketDTO;
-import com.group1.energymanager.model.Packet;
 
 import java.util.List;
 
 public class ListPacketResponse {
     private BaseResponse result;
-    private List<Packet> listPacket;
+    private List<PacketDTO> listPacketDTO;
 
     public BaseResponse getResult() {
         return result;
@@ -17,11 +16,11 @@ public class ListPacketResponse {
         this.result = result;
     }
 
-    public List<Packet> getListPacket() {
-        return listPacket;
+    public List<PacketDTO> getListPacketDTO() {
+        return listPacketDTO;
     }
 
-    public void setListPacket(List<Packet> listPacket) {
-        this.listPacket = listPacket;
+    public void setListPacketDTO(List<PacketDTO> listPacketDTO) {
+        this.listPacketDTO = listPacketDTO;
     }
 }

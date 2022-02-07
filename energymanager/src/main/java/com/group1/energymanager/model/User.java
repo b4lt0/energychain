@@ -24,7 +24,7 @@ public class User {
     @Column(name = "user_id", nullable = false, updatable = false)
     private String id;
 
-    @OneToMany(mappedBy = "userId", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "owner", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     @JsonManagedReference
     private List<Packet> packets = new ArrayList<Packet>();
 
@@ -36,30 +36,24 @@ public class User {
     @JsonManagedReference
     private List<Transaction> buy_transactions = new ArrayList<Transaction>();
 
-    @Column(name = "role")
     private ERole role;
 
-    @Column(name = "rag_sociale")
     private String ragSociale;
 
     @NotBlank
     @Size(max = 20)
-    @Column(name = "username")
     private String username;
 
     @NotBlank
     @Size(max = 50)
     @Email
-    @Column(name = "email")
     private String email;
 
     @NotBlank
     @Size(max = 120)
-    @Column(name = "password")
     private String password;
 
 
-    @Column(name = "wallet")
     private float wallet;
 
     public User() {

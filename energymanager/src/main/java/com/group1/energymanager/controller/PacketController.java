@@ -82,7 +82,7 @@ public class PacketController {
      * */
     @GetMapping("/findbyID/{packetID}")
     private ResponseEntity<PacketResponse> findbyId(@PathVariable("packetID") String packetID) throws PacketNotFoundException {
-        return new ResponseEntity<PacketResponse>(packetService.findPacketById(packetID), HttpStatus.OK);
+        return new ResponseEntity<>(packetService.findPacketById(packetID), HttpStatus.OK);
     }
 
     /*[Problems]
@@ -104,6 +104,6 @@ public class PacketController {
      * */
     @GetMapping("/all")
     private ResponseEntity<ListPacketResponse> findPackets() {
-        return new ResponseEntity<ListPacketResponse>(packetService.findAllPackets(), HttpStatus.OK);
+        return new ResponseEntity<ListPacketResponse>(packetService.getAllPackets(), HttpStatus.OK);
     }
 }

@@ -1,5 +1,6 @@
 package com.group1.energymanager.service;
 
+import com.group1.energymanager.DTOs.PacketDTO;
 import com.group1.energymanager.exceptions.PacketNotFoundException;
 import com.group1.energymanager.exceptions.UserNotFoundException;
 import com.group1.energymanager.model.Packet;
@@ -13,6 +14,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -34,8 +36,8 @@ public class PacketService {
 
         // packet.setId("PAAAA0000"); //non va fatto, viene generato automaticamente
         //*prenderlo dal campo del packet request
-        packet.setUser(userRepository.findById(packetRequest.getUserId())
-                .orElseThrow(()->new UserNotFoundException("User by id " + packetRequest.getUserId() + " was not found!")));
+        packet.setOwner(userRepository.findById(packetRequest.getOwner())
+                .orElseThrow(()->new UserNotFoundException("User by id " + packetRequest.getOwner() + " was not found!")));
         packet.setTitle(packetRequest.getTitle());
         packet.setDescription(packetRequest.getDescription());
         packet.setPrice(packetRequest.getPrice());
@@ -60,8 +62,8 @@ public class PacketService {
         Packet packet = packetRepository.findById(packetRequest.getId())
                 .orElseThrow(()->new PacketNotFoundException("Packet " + packetRequest.getId() + " was not found!"));
         //packet.setId(packetRequest.getId()); no perchè non voglio aggiornare l'id
-        packet.setUser(userRepository.findById(packetRequest.getUserId())
-                .orElseThrow(()->new UserNotFoundException("User " + packetRequest.getUserId() + " was not found!"))); //da modificare con una vera eccezione
+        packet.setOwner(userRepository.findById(packetRequest.getOwner())
+                .orElseThrow(()->new UserNotFoundException("User " + packetRequest.getOwner() + " was not found!"))); //da modificare con una vera eccezione
         packet.setTitle(packetRequest.getTitle());
         packet.setDescription(packetRequest.getDescription());
         packet.setPrice(packetRequest.getPrice());
@@ -77,17 +79,17 @@ public class PacketService {
         resp.setResult(result);
         return resp;
     }
-/*
+
     public ListPacketResponse getAllPackets(){
         ListPacketResponse resp = new ListPacketResponse();
         //recupero pacchetti dal db
         List<Packet> packets = packetRepository.findAll();
         //creo lista di packetDTO
         List<PacketDTO> listPacketDTO = new ArrayList<>();
-        PacketDTO tmp = new PacketDTO();
         for(Packet p : packets) {
+            PacketDTO tmp = new PacketDTO();
             tmp.setId(p.getId());
-            tmp.setUserId(p.getUserId());
+            tmp.setOwner(p.getOwner());
             tmp.setDescription(p.getDescription());
             tmp.setQuantity(p.getQuantity());
             tmp.setPrice(p.getPrice());
@@ -101,7 +103,7 @@ public class PacketService {
 
     }
 
- */
+ /*
     public ListPacketResponse findAllPackets() {
         ListPacketResponse resp = new ListPacketResponse();
         List<Packet> packets = packetRepository.findAll();
@@ -110,6 +112,8 @@ public class PacketService {
         resp.setResult(result);
         return resp;
     }
+
+ */
 
     public PacketResponse deletePacket(String packetID) throws PacketNotFoundException {
         //rimuovo a db

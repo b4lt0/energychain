@@ -24,7 +24,7 @@ public class Packet implements Serializable {
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name = "owner_id", nullable = false)
     @JsonBackReference
-    private User user;
+    private User owner;
 
     @OneToMany(mappedBy = "packetId", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     @JsonManagedReference
@@ -43,9 +43,9 @@ public class Packet implements Serializable {
         this.id = id;
     }
 
-    public Packet(String id, User user, List<Transaction> transactions,String title,  String description, Long quantity, Double price, Type type) {
+    public Packet(String id, User owner, List<Transaction> transactions, String title, String description, Long quantity, Double price, Type type) {
         this.id = id;
-        this.user = user;
+        this.owner = owner;
         this.transactions = transactions;
         this.title = title;
         this.description = description;
@@ -55,7 +55,7 @@ public class Packet implements Serializable {
     }
 
     public PacketDTO toDTO() {
-        final PacketDTO packetDTO = new PacketDTO(this.id, this.user, this.title, this.description,
+        final PacketDTO packetDTO = new PacketDTO(this.id, this.owner, this.title, this.description,
                 this.quantity, this.price, this.type);
         return packetDTO;
     }
@@ -70,12 +70,12 @@ public class Packet implements Serializable {
         this.id = id;
     }
 
-    public User getUser() {
-        return user;
+    public User getOwner() {
+        return owner;
     }
 
-    public void setUser(User user) {
-        this.user = user;
+    public void setOwner(User owner) {
+        this.owner = owner;
     }
 
     public List<Transaction> getTransactions() {
