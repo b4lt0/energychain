@@ -89,6 +89,7 @@ public class PacketService {
         for(Packet p : packets) {
             PacketDTO tmp = new PacketDTO();
             tmp.setId(p.getId());
+            tmp.setTitle(p.getTitle());
             tmp.setOwner(p.getOwner());
             tmp.setDescription(p.getDescription());
             tmp.setQuantity(p.getQuantity());
