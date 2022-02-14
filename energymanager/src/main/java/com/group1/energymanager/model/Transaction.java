@@ -7,12 +7,16 @@ import org.hibernate.annotations.GenericGenerator;
 import javax.persistence.*;
 import java.io.Serializable;
 import java.sql.Timestamp;
+import java.util.Optional;
 
 @Entity
 @Table(name="transaction")
 public class Transaction implements Serializable {
 
-    @Id @GeneratedValue(generator="system-uuid")
+//     public TransactionDTO toDTO;
+
+    @Id
+    @GeneratedValue(generator="system-uuid")
     @GenericGenerator(name="system-uuid", strategy = "uuid")
     @Column(name="transaction_id", nullable = false, updatable = false)
     private String id;
@@ -45,6 +49,10 @@ public class Transaction implements Serializable {
         this.buyerId = buyerId;
         this.packetId = packetId;
         this.time = new Timestamp(System.currentTimeMillis());
+    }
+    public TransactionDTO toDTO() {
+        final TransactionDTO transactionDTO = new TransactionDTO(this.id, this.sellerId, this.buyerId, this.packetId, this.time);
+        return transactionDTO;
     }
 
     public String getId() {

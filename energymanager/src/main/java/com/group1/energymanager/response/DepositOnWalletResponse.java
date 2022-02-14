@@ -4,7 +4,7 @@ public class DepositOnWalletResponse {
 
     private BaseResponse result;
     private String id;
-    private Double wallet;
+    private float wallet;
 
     public BaseResponse getResult() {
         return result;
@@ -22,11 +22,11 @@ public class DepositOnWalletResponse {
         this.id = id;
     }
 
-    public Double getWallet() {
+    public float getWallet() {
         return wallet;
     }
 
-    public void setWallet(Double wallet) {
+    public void setWallet(float wallet) {
         this.wallet = wallet;
     }
 }

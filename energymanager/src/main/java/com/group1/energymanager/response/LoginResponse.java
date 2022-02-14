@@ -1,9 +1,10 @@
 package com.group1.energymanager.response;
 
-public class UpdateUserResponse {
+
+public class LoginResponse {
+
+
         private BaseResponse result;
-        private String id;
-        private String ragSociale;
         private String username;
         private String password;
 
@@ -13,22 +14,6 @@ public class UpdateUserResponse {
 
         public void setResult(BaseResponse result) {
             this.result = result;
-        }
-
-        public String getId() {
-            return id;
-        }
-
-        public void setId(String id) {
-            this.id = id;
-        }
-
-        public String getragSociale() {
-            return ragSociale;
-        }
-
-        public void setRagSociale(String ragSociale) {
-            this.ragSociale = ragSociale;
         }
 
         public String getUsername() {
@@ -46,5 +31,7 @@ public class UpdateUserResponse {
         public void setPassword(String password) {
             this.password = password;
         }
+
+
     }
 
