@@ -43,12 +43,12 @@ public class Transaction implements Serializable {
     public Transaction() {
     }
 
-    public Transaction(String id, User sellerId, User buyerId, Packet packetId, Timestamp time) {
+    public Transaction(String id, User sellerId, User buyerId, Packet packetId) {
         this.id = id;
         this.sellerId = sellerId;
         this.buyerId = buyerId;
         this.packetId = packetId;
-        this.time = time;
+        this.time = new Timestamp(System.currentTimeMillis());
     }
     public TransactionDTO toDTO() {
         final TransactionDTO transactionDTO = new TransactionDTO(this.id, this.sellerId, this.buyerId, this.packetId, this.time);
@@ -93,5 +93,9 @@ public class Transaction implements Serializable {
 
     public void setTime(Timestamp time) {
         this.time = time;
+    }
+
+    public TransactionDTO toDTO() {
+        return new TransactionDTO(this.id, this.sellerId, this.buyerId, this.packetId, this.time);
     }
 }

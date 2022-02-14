@@ -1,5 +1,6 @@
 package com.group1.energymanager.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import org.hibernate.annotations.GenericGenerator;
 
@@ -30,11 +31,11 @@ public class User {
     private String ragSociale;
     private String username;
     private String password;
-    private Float wallet;
+    private Double wallet;
 
     public User(){ }
 
-    public User(String id, List<Packet> packets, List<Transaction> sell_transactions, List<Transaction> buy_transactions, String ragSociale, String username, String password, Float wallet) {
+    public User(String id, List<Packet> packets, List<Transaction> sell_transactions, List<Transaction> buy_transactions, String ragSociale, String username, String password, Double wallet) {
         this.id = id;
         this.packets = packets;
         this.sell_transactions = sell_transactions;
@@ -45,7 +46,8 @@ public class User {
         this.wallet = wallet;
     }
 
-    public User(String userID) {
+    public User(String id) {
+        this.id=id;
     }
 
     public String getId() {
@@ -64,16 +66,16 @@ public class User {
         this.packets = packets;
     }
 
-    public List<Transaction> getSell_transactions(List<Transaction> sell_transactions) {
-        return this.sell_transactions;
+    public List<Transaction> getSell_transactions() {
+        return sell_transactions;
     }
 
     public void setSell_transactions(List<Transaction> sell_transactions) {
         this.sell_transactions = sell_transactions;
     }
 
-    public List<Transaction> getBuy_transactions(List<Transaction> buy_transactions) {
-        return this.buy_transactions;
+    public List<Transaction> getBuy_transactions() {
+        return buy_transactions;
     }
 
     public void setBuy_transactions(List<Transaction> buy_transactions) {
@@ -104,11 +106,11 @@ public class User {
         this.password = password;
     }
 
-    public Float getWallet() {
+    public Double getWallet() {
         return wallet;
     }
 
-    public void setWallet(Float wallet) {
+    public void setWallet(Double wallet) {
         this.wallet = wallet;
     }
 }

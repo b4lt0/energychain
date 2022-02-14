@@ -1,0 +1,1 @@
+https://start.spring.io/#!type=maven-project&language=java&platformVersion=2.6.0&packaging=jar&jvmVersion=1.8&groupId=com.group1&artifactId=energymanager&name=energymanager&description=software%20engineering%20project%20work&packageName=com.group1.energymanager&dependencies=web,data-jpa,mysql

@@ -1,23 +1,17 @@
 package com.group1.energymanager.request;
 
-import com.group1.energymanager.model.Packet;
-import com.group1.energymanager.model.Transaction;
-
-import java.util.List;
-
-public class UserRequest {
+public class UpdateRequest {
     private String id;
     private String ragSociale;
     private String username;
+    private String password;
 
-    public UserRequest(String id, String ragSociale, String username) {
+
+    public UpdateRequest(String id, String ragSociale, String username, String password) {
         this.id = id;
         this.ragSociale = ragSociale;
         this.username = username;
-    }
-
-    public UserRequest(String id) {
-        this.id = id;
+        this.password = password;
     }
 
     public String getId() {
@@ -44,5 +38,11 @@ public class UserRequest {
         this.username = username;
     }
 
-}
+    public String getPassword() {
+        return password;
+    }
 
+    public void setPassword(String password) {
+        this.password = password;
+    }
+}

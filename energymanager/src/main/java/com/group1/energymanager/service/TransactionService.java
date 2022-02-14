@@ -1,3 +1,4 @@
+
 package com.group1.energymanager.service;
 
 import com.group1.energymanager.DTOs.TransactionDTO;
@@ -12,9 +13,11 @@ import com.group1.energymanager.response.BaseResponse;
 import com.group1.energymanager.response.ListTransactionResponse;
 import com.group1.energymanager.response.TransactionResponse;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.jpa.repository.support.SimpleJpaRepository;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 
+import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -24,6 +27,8 @@ public class TransactionService {
     private final TransactionRepository transactionRepository;
     private final UserRepository userRepository;
     private final PacketRepository packetRepository;
+
+
 
 
     @Autowired
@@ -67,14 +72,14 @@ public class TransactionService {
                 .orElseThrow(() -> new UserNotFoundException("Buyer " + transactionRequest.getBuyerId() + " Not Found!")));
         newTransaction.setPacketId(packetRepository.findById(transactionRequest.getPacketId())
                 .orElseThrow(() -> new PacketNotFoundException("Packet " + transactionRequest.getPacketId() + " Not Found!")));
-        newTransaction.setTime(transactionRequest.getTime());
+        newTransaction.setTime(new Timestamp(System.currentTimeMillis()));
         transactionRepository.save(newTransaction);
         //popolo la response
         BaseResponse result = new BaseResponse(HttpStatus.CREATED, "Transaction " + newTransaction.getId() + " successfully created!");
         TransactionResponse resp = new TransactionResponse();
         resp.setResult(result);
-        //TODO controlla se serve
-//        resp.setTransaction(newTransaction.toDTO);
+        resp.setTransaction(newTransaction.toDTO());
+        resp.getTransaction().setTransactionID(newTransaction.getId()); //non so perchè ci sia bisogno di settarlo così
         return resp;
     }
 }

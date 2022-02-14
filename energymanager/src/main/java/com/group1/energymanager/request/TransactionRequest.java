@@ -1,8 +1,5 @@
 package com.group1.energymanager.request;
 
-import com.group1.energymanager.model.Packet;
-import com.group1.energymanager.model.User;
-
 import java.sql.Timestamp;
 
 public class TransactionRequest {
@@ -14,14 +11,14 @@ public class TransactionRequest {
 
     private String packetId;
 
-    private Timestamp time;
+    private Timestamp time; //AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
 
-    public TransactionRequest(String id, String sellerId, String buyerId, String packetId, Timestamp time) {
+    public TransactionRequest(String id, String sellerId, String buyerId, String packetId) {
         this.id = id;
         this.sellerId = sellerId;
         this.buyerId = buyerId;
         this.packetId = packetId;
-        this.time = time;
+        //this.time = time;
     }
 
     public String getId() {
@@ -64,5 +61,3 @@ public class TransactionRequest {
         this.time = time;
     }
 }
-
-

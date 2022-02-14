@@ -1,0 +1,35 @@
+---------------------------------------------------------------------------------------------------------------
+CREATE TABLE `user`
+(
+ `user_id` varchar(45) NOT NULL ,
+
+PRIMARY KEY (`user_id`)
+);
+
+---------------------------------------------------------------------------------------------------------------
+CREATE TABLE `packet`
+(
+ `packet_id` varchar(45) NOT NULL ,
+ `owner_id`  varchar(45) NOT NULL ,
+
+PRIMARY KEY (`packet_id`),
+KEY `FK_22` (`owner_id`),
+CONSTRAINT `FK_20` FOREIGN KEY `FK_22` (`owner_id`) REFERENCES `user` (`user_id`)
+);
+
+---------------------------------------------------------------------------------------------------------------
+CREATE TABLE `transaction`
+(
+ `seller_id`      varchar(45) NOT NULL ,
+ `buyer_id`       varchar(45) NOT NULL ,
+ `packet_id`      varchar(45) NOT NULL ,
+ `transaction_id` varchar(45) NOT NULL ,
+
+PRIMARY KEY (`transaction_id`),
+KEY `FK_13` (`seller_id`),
+CONSTRAINT `FK_11` FOREIGN KEY `FK_13` (`seller_id`) REFERENCES `user` (`user_id`),
+KEY `FK_16` (`buyer_id`),
+CONSTRAINT `FK_14` FOREIGN KEY `FK_16` (`buyer_id`) REFERENCES `user` (`user_id`),
+KEY `FK_25` (`packet_id`),
+CONSTRAINT `FK_23` FOREIGN KEY `FK_25` (`packet_id`) REFERENCES `packet` (`packet_id`)
+);
