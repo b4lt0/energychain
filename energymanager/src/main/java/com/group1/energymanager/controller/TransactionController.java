@@ -22,10 +22,15 @@ public class TransactionController {
 
     @GetMapping("/all")
     private ResponseEntity<ListTransactionResponse> findTransactions() {
-        return new ResponseEntity<ListTransactionResponse>(transactionService.getAllTransactions(), HttpStatus.OK);
+        return new ResponseEntity<ListTransactionResponse>
+                (transactionService.getAllTransactions(), HttpStatus.OK);
     }
+
     @PostMapping("/add")
-    private ResponseEntity<TransactionResponse> addTransaction(@RequestBody TransactionRequest transactionRequest) throws UserNotFoundException, PacketNotFoundException {
-        return new ResponseEntity<TransactionResponse>(transactionService.addTransaction(transactionRequest), HttpStatus.CREATED);
+    private ResponseEntity<TransactionResponse> addTransaction(
+            @RequestBody TransactionRequest transactionRequest)
+                throws UserNotFoundException, PacketNotFoundException, Exception {
+        return new ResponseEntity<TransactionResponse>
+                (transactionService.addTransaction(transactionRequest), HttpStatus.CREATED);
     }
 }

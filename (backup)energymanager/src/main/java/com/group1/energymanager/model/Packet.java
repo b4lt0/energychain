@@ -1,6 +1,7 @@
 package com.group1.energymanager.model;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import com.group1.energymanager.DTOs.PacketDTO;
 import org.hibernate.annotations.GenericGenerator;
@@ -32,8 +33,8 @@ public class Packet implements Serializable {
 
 
     private String description;
-    private Integer quantity;
-    private Integer price;
+    private Long quantity;
+    private Double price;
     private Type type;
 
     public Packet() {
@@ -43,7 +44,7 @@ public class Packet implements Serializable {
         this.id = id;
     }
 
-    public Packet(String id, User userId, List<Transaction> transactions, String description, Integer quantity, Integer price, Type type) {
+    public Packet(String id, User userId, List<Transaction> transactions, String description, Long quantity, Double price, Type type) {
         this.id = id;
         this.userId = userId;
         this.transactions = transactions;
@@ -91,19 +92,19 @@ public class Packet implements Serializable {
         this.description = description;
     }
 
-    public Integer getQuantity() {
+    public Long getQuantity() {
         return quantity;
     }
 
-    public void setQuantity(Integer quantity) {
+    public void setQuantity(Long quantity) {
         this.quantity = quantity;
     }
 
-    public Integer getPrice() {
+    public Double getPrice() {
         return price;
     }
 
-    public void setPrice(Integer price) {
+    public void setPrice(Double price) {
         this.price = price;
     }
 

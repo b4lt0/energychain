@@ -1,18 +1,23 @@
 package com.group1.energymanager.request;
 
-public class RegistrationRequest {
+import com.group1.energymanager.model.Packet;
+import com.group1.energymanager.model.Transaction;
+
+import java.util.List;
+
+public class UserRequest {
     private String id;
     private String ragSociale;
     private String username;
-    private String password;
-    private Double wallet;
 
-    public RegistrationRequest(String id, String ragSociale, String username, String password, Double wallet) {
+    public UserRequest(String id, String ragSociale, String username) {
         this.id = id;
         this.ragSociale = ragSociale;
         this.username = username;
-        this.password = password;
-        this.wallet = wallet;
+    }
+
+    public UserRequest(String id) {
+        this.id = id;
     }
 
     public String getId() {
@@ -39,19 +44,5 @@ public class RegistrationRequest {
         this.username = username;
     }
 
-    public String getPassword() {
-        return password;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
-    }
-
-    public Double getWallet() {
-        return wallet;
-    }
-
-    public void setWallet(Double wallet) {
-        this.wallet = wallet;
-    }
 }
+

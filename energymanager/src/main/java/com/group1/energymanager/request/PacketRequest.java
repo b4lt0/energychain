@@ -1,16 +1,15 @@
 package com.group1.energymanager.request;
 import com.group1.energymanager.model.Type;
-import com.group1.energymanager.model.User;
 
 public class PacketRequest {
     private String id;
     private String userId;
     private String description;
-    private Long quantity;
-    private Double price;
+    private Integer quantity;
+    private Integer price;
     private Type type;
 
-    public PacketRequest(String id, String userId, String description, Long quantity, Double price, Type type) {
+    public PacketRequest(String id, String userId, String description, Integer quantity, Integer price, Type type) {
         this.id = id;
         this.userId = userId;
         this.description = description;
@@ -47,19 +46,19 @@ public class PacketRequest {
         this.description = description;
     }
 
-    public Long getQuantity() {
+    public Integer getQuantity() {
         return quantity;
     }
 
-    public void setQuantity(Long quantity) {
+    public void setQuantity(Integer quantity) {
         this.quantity = quantity;
     }
 
-    public Double getPrice() {
+    public Integer getPrice() {
         return price;
     }
 
-    public void setPrice(Double price) {
+    public void setPrice(Integer price) {
         this.price = price;
     }
 

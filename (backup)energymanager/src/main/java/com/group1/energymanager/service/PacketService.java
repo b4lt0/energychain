@@ -2,6 +2,7 @@ package com.group1.energymanager.service;
 
 import com.group1.energymanager.DTOs.PacketDTO;
 import com.group1.energymanager.model.Packet;
+import com.group1.energymanager.model.User;
 import com.group1.energymanager.repo.PacketRepository;
 import com.group1.energymanager.repo.UserRepository;
 import com.group1.energymanager.request.PacketRequest;
