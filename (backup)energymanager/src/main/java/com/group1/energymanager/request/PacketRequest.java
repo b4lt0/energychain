@@ -1,22 +1,16 @@
-package com.group1.energymanager.DTOs;
+package com.group1.energymanager.request;
 import com.group1.energymanager.model.Type;
 import com.group1.energymanager.model.User;
-public class PacketDTO {
-    //private BaseResponse result;
+
+public class PacketRequest {
     private String id;
-    private User userId;
+    private String userId;
     private String description;
-    private Integer quantity;
-    private Integer price;
+    private Long quantity;
+    private Double price;
     private Type type;
 
-    public PacketDTO(String packetID) {
-        this.id=packetID;
-    }
-
-    public PacketDTO() { }
-
-    public PacketDTO(String id, User userId, String description, Integer quantity, Integer price, Type type) {
+    public PacketRequest(String id, String userId, String description, Long quantity, Double price, Type type) {
         this.id = id;
         this.userId = userId;
         this.description = description;
@@ -25,13 +19,10 @@ public class PacketDTO {
         this.type = type;
     }
 
-    /* public BaseResponse getResult() {
-             return result;
-         }
-         public void setResult(BaseResponse result) {
-             this.result = result;
-         }
-         */
+    public PacketRequest(String id) {
+        this.id = id;
+    }
+
     public String getId() {
         return id;
     }
@@ -40,11 +31,11 @@ public class PacketDTO {
         this.id = id;
     }
 
-    public User getUserId() {
+    public String getUserId() {
         return userId;
     }
 
-    public void setUserId(User userId) {
+    public void setUser(String userId) {
         this.userId = userId;
     }
 
@@ -56,19 +47,19 @@ public class PacketDTO {
         this.description = description;
     }
 
-    public Integer getQuantity() {
+    public Long getQuantity() {
         return quantity;
     }
 
-    public void setQuantity(Integer quantity) {
+    public void setQuantity(Long quantity) {
         this.quantity = quantity;
     }
 
-    public Integer getPrice() {
+    public Double getPrice() {
         return price;
     }
 
-    public void setPrice(Integer price) {
+    public void setPrice(Double price) {
         this.price = price;
     }
 

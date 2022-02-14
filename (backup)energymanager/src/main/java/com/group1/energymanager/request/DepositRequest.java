@@ -1,17 +1,12 @@
-package com.group1.energymanager.response;
+package com.group1.energymanager.request;
 
-public class DepositOnWalletResponse {
-
-    private BaseResponse result;
+public class DepositRequest {
     private String id;
     private Double wallet;
 
-    public BaseResponse getResult() {
-        return result;
-    }
-
-    public void setResult(BaseResponse result) {
-        this.result = result;
+    public DepositRequest(String id, Double wallet) {
+        this.id = id;
+        this.wallet = wallet;
     }
 
     public String getId() {

@@ -1,10 +1,8 @@
 package com.group1.energymanager.response;
 
-public class DepositOnWalletResponse {
-
+public class DeleteUserResponse {
     private BaseResponse result;
     private String id;
-    private Double wallet;
 
     public BaseResponse getResult() {
         return result;
@@ -20,13 +18,5 @@ public class DepositOnWalletResponse {
 
     public void setId(String id) {
         this.id = id;
-    }
-
-    public Double getWallet() {
-        return wallet;
-    }
-
-    public void setWallet(Double wallet) {
-        this.wallet = wallet;
     }
 }

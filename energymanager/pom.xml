@@ -44,7 +44,56 @@
 			<artifactId>spring-boot-starter-test</artifactId>
 			<scope>test</scope>
 		</dependency>
+		<dependency>
+			<groupId>org.web3j</groupId>
+			<artifactId>core</artifactId>
+			<version>4.8.1</version>
+		</dependency>
+		<dependency>
+			<groupId>org.web3j</groupId>
+			<artifactId>utils</artifactId>
+			<version>4.8.1</version>
+		</dependency>
+		<dependency>
+			<groupId>org.web3j</groupId>
+			<artifactId>abi</artifactId>
+			<version>4.8.1</version>
+		</dependency>
+		<dependency>
+			<groupId>org.web3j</groupId>
+			<artifactId>tuples</artifactId>
+			<version>4.8.1</version>
+		</dependency>
+		<dependency>
+			<groupId>org.web3j</groupId>
+			<artifactId>crypto</artifactId>
+			<version>4.8.1</version>
+		</dependency>
+		<dependency>
+			<groupId>org.web3j</groupId>
+			<artifactId>rlp</artifactId>
+			<version>4.8.1</version>
+		</dependency>
+
+			<!--  Needed to avoid conflict with OkHttp being used in auth0-java and okhttp3 being used by spring -->
+			<!--dependency>
+				<groupId>com.squareup.okhttp3</groupId>
+				<artifactId>okhttp</artifactId>
+				<version>4.9.0</version>
+			</dependency-->
+
 	</dependencies>
+
+	<dependencyManagement>
+		<dependencies>
+			<!--  Needed to avoid conflict with OkHttp being used in auth0-java and okhttp3 being used by spring -->
+			<dependency>
+				<groupId>com.squareup.okhttp3</groupId>
+				<artifactId>okhttp</artifactId>
+				<version>4.9.0</version>
+			</dependency>
+		</dependencies>
+	</dependencyManagement>
 
 	<build>
 		<plugins>
@@ -52,7 +101,45 @@
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
 			</plugin>
+			<!--plugin>
+				<groupId>org.web3j</groupId>
+				<artifactId>core</artifactId>
+				<version>4.8.1</version>
+				<configuration>
+					<packageName>com.zuehlke.blockchain.model</packageName>
+					<sourceDestination>src/main/java/generated</sourceDestination>
+					<nativeJavaType>true</nativeJavaType>
+					<outputFormat>java,bin</outputFormat>
+					<soliditySourceFiles>
+						<directory>src/main/resources</directory>
+						<includes>
+							<include>**/*.sol</include>
+						</includes>
+					</soliditySourceFiles>
+					<abiSourceFiles>
+						<directory>src/main/resources</directory>
+						<includes>
+							<include>**/*.json</include>
+						</includes>
+					</abiSourceFiles>
+					<outputDirectory>
+						<java>src/java/generated</java>
+						<bin>src/bin/generated</bin>
+						<abi>src/abi/generated</abi>
+					</outputDirectory>
+					<contract>
+						<includes>
+							<include>greeter</include>
+						</includes>
+						<excludes>
+							<exclude>mortal</exclude>
+						</excludes>
+					</contract>
+					<pathPrefixes>
+						<pathPrefix>dep=../dependencies</pathPrefix>
+					</pathPrefixes>
+				</configuration>
+			</plugin-->
 		</plugins>
 	</build>
-
 </project>

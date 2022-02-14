@@ -1,22 +1,17 @@
 package com.group1.energymanager.model;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
-import com.group1.energymanager.DTOs.TransactionDTO;
 import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
 import java.io.Serializable;
 import java.sql.Timestamp;
-import java.util.Optional;
 
 @Entity
 @Table(name="transaction")
 public class Transaction implements Serializable {
 
-//     public TransactionDTO toDTO;
-
-    @Id
-    @GeneratedValue(generator="system-uuid")
+    @Id @GeneratedValue(generator="system-uuid")
     @GenericGenerator(name="system-uuid", strategy = "uuid")
     @Column(name="transaction_id", nullable = false, updatable = false)
     private String id;
@@ -40,24 +35,15 @@ public class Transaction implements Serializable {
 
     private Timestamp time;
 
-    public Transaction(String id) {
-        this.id=id;
+    public Transaction() {
     }
 
-    public Transaction(String id, User sellerId, User buyerId, Packet packetId) {
+    public Transaction(String id, User sellerId, User buyerId, Packet packetId, Timestamp time) {
         this.id = id;
         this.sellerId = sellerId;
         this.buyerId = buyerId;
         this.packetId = packetId;
-        this.time = new Timestamp(System.currentTimeMillis());
-    }
-    public TransactionDTO toDTO() {
-        final TransactionDTO transactionDTO = new TransactionDTO(this.id, this.sellerId, this.buyerId, this.packetId, this.time);
-        return transactionDTO;
-    }
-
-    public Transaction() {
-
+        this.time = time;
     }
 
     public String getId() {
@@ -98,9 +84,5 @@ public class Transaction implements Serializable {
 
     public void setTime(Timestamp time) {
         this.time = time;
-    }
-
-    public TransactionDTO toDTO() {
-        return new TransactionDTO(this.id, this.sellerId, this.buyerId, this.packetId, this.time);
     }
 }

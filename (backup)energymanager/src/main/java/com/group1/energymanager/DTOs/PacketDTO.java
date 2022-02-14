@@ -1,4 +1,5 @@
 package com.group1.energymanager.DTOs;
+import com.group1.energymanager.model.Packet;
 import com.group1.energymanager.model.Type;
 import com.group1.energymanager.model.User;
 public class PacketDTO {
@@ -6,8 +7,8 @@ public class PacketDTO {
     private String id;
     private User userId;
     private String description;
-    private Integer quantity;
-    private Integer price;
+    private Long quantity;
+    private Double price;
     private Type type;
 
     public PacketDTO(String packetID) {
@@ -16,7 +17,7 @@ public class PacketDTO {
 
     public PacketDTO() { }
 
-    public PacketDTO(String id, User userId, String description, Integer quantity, Integer price, Type type) {
+    public PacketDTO(String id, User userId, String description, Long quantity, Double price, Type type) {
         this.id = id;
         this.userId = userId;
         this.description = description;
@@ -56,19 +57,19 @@ public class PacketDTO {
         this.description = description;
     }
 
-    public Integer getQuantity() {
+    public Long getQuantity() {
         return quantity;
     }
 
-    public void setQuantity(Integer quantity) {
+    public void setQuantity(Long quantity) {
         this.quantity = quantity;
     }
 
-    public Integer getPrice() {
+    public Double getPrice() {
         return price;
     }
 
-    public void setPrice(Integer price) {
+    public void setPrice(Double price) {
         this.price = price;
     }
 
