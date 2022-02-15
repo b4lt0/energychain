@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+
+<head>
+  <meta charset="UTF-8">
+  <title> english topup </title>
+ 
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    table {
+      font-family: arial, sans-serif;
+      border-collapse: collapse;
+      width: 100%;
+    }
+
+    td, th {
+      border: 1px solid #dddddd;
+      text-align: left;
+      padding: 8px;
+    }
+
+    tr:nth-child(even) {
+      background-color: #dddddd;
+    }
+  </style>
+</head>
+
+<body>
+  <!-- ==============================================
+  Credit Card Payment Section
+  =============================================== -->
+  <section class="credit-card">
+    <div class="container">
+      <div class="card-holder">
+        <div class="card-box bg-news">
+          <div class="row">
+            <div class="col-lg-6">
+              <div class="img-box">
+                <img class="img-account-profile rounded-circle mb-2" src="http://bootdey.com/img/Content/avatar/avatar1.png" style="width:250px;height:250px">
+              </div>
+            </div>
+            <div class="col-lg-6">
+
+              <form
+                    name="form"
+                    (ngSubmit)="onSubmit()"
+                    #f="ngForm"
+                    >
+                <div class="card-details">
+                  <h3 class="title">Credit Card Details</h3>
+                  <div class="row">
+                    <div class="form-group col-sm-7">
+                      <div class="inner-addon right-addon">
+                        <label for="card-holder">Card Holder</label>
+                        <input id="card-holder"
+                               type="text" class="form-control" placeholder="Card Holder" aria-label="Card Holder" aria-describedby="basic-addon1" required>
+                      </div>
+                    </div>
+                    <div class="form-group col-sm-5">
+                      <label for="">Expiration Date</label>
+                      <div class="input-group expiration-date">
+                        <input type="text" class="form-control" placeholder="MM" aria-label="MM" aria-describedby="basic-addon1" required>
+                        <span class="date-separator">/</span>
+                        <input type="text" class="form-control" placeholder="YY" aria-label="YY" aria-describedby="basic-addon1" required>
+                      </div>
+                    </div>
+                    <div class="form-group col-sm-8">
+                      <div class="inner-addon right-addon">
+                        <label for="card-number">Card Number</label>
+                        <input id="card-number" type="text" class="form-control" placeholder="Card Number" aria-label="Card Holder" aria-describedby="basic-addon1" required>
+                      </div>
+                    </div>
+                    <div class="form-group col-sm-4">
+                      <label for="cvc">CVC</label>
+                      <input id="cvc" type="text" class="form-control" placeholder="CVC" aria-label="Card Holder" aria-describedby="basic-addon1" required>
+                    </div>
+                    <div class="form-group col-sm-4">
+                      <label for="cvc">Amount</label>
+                      <input id="money"
+                             class="form-control"
+                             placeholder="Amount"
+                             aria-describedby="basic-addon1"
+                             name="money"
+                             [(ngModel)]="form.money"
+                             type="number"
+                             #money="ngModel"
+                             required>
+                    </div>
+                    <div class="form-group col-sm-8">
+                      <div class="inner-addon right-addon">
+                        <label for="card-number">0-Add / 1-Withdraw</label>
+                        <input id="operation"
+                               type="operation"
+                               class="form-control"
+                               placeholder="0 or 1"
+                               aria-label="Card Holder"
+                               aria-describedby="basic-addon1"
+                               name="operation"
+                               [(ngModel)]="form.operation">
+                      </div>
+                    </div>
+                    <div class="button">
+                      <input type="submit" value="Proceed">
+                    </div>
+                  </div>
+                </div>
+              </form>
+
+            </div><!--/col-lg-6 -->
+
+          </div><!--/row -->
+        </div><!--/card-box -->
+      </div><!--/card-holder -->
+
+    </div><!--/container -->
+  </section>
+</body>
+</html>

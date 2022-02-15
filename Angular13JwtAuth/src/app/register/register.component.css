@@ -1,0 +1,117 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700&display=swap');
+
+
+
+label {
+  display: block;
+  margin-top: 10px;
+}
+
+body {
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 10px;
+  background: linear-gradient(135deg, #f79055, #b34c10);
+}
+
+.col-md-12 {
+  background: linear-gradient(135deg, #f79055, #b34c10);
+  padding-top: 10vh;
+  padding-bottom: 10vh;
+}
+
+.card-container.card {
+  max-width: 400px !important;
+  padding: 40px 40px;
+  margin-left: 370px;
+}
+
+
+.card {
+  max-width: 3200px;
+  width: 70%;
+  background-color: #fff;
+  padding: 25px 30px;
+  border-radius: 5px;
+  box-shadow: 0 5px 10px rgba(0,0,0,0.15);
+}
+
+  .card .title {
+    font-size: 35px;
+    font-weight: 600;
+    position: relative;
+  }
+
+    .card .title::before {
+      content: "";
+      position: absolute;
+      left: 0;
+      bottom: 0;
+      height: 3px;
+      margin-bottom: auto;
+      width: 30px;
+      border-radius: 5px;
+      background: linear-gradient(135deg, #2c5983, #13055f);
+    }
+
+.profile-img-card {
+  width: 96px;
+  height: 96px;
+  margin: 0 auto 10px;
+  display: block;
+  -moz-border-radius: 50%;
+  -webkit-border-radius: 50%;
+  border-radius: 50%;
+}
+
+.btn-group {
+  display: flex;
+  width: 100%;
+  background: linear-gradient(135deg, #2c5983, #13055f);
+  position: relative;
+}
+
+  .btn-group .signup-btn {
+    cursor: pointer;
+    display: block;
+    color: white;
+    text-align: center;
+    font-size: 15px;
+    font-weight: 700;
+    border-radius: 32px;
+    background-color: darkorange;
+    padding: 15px 50px;
+    background: linear-gradient(135deg, #2c5983, #13055f);
+    align-content: center;
+  }
+
+  .btn-group .play-btn {
+    margin-left: 40px;
+    display: inline-flex;
+    background: linear-gradient(135deg, #2c5983, #13055f);
+  }
+
+  .btn-group span {
+    color: #000;
+    font-size: 15px;
+    font-weight: 700;
+    margin: auto 20px;
+    cursor: pointer;
+    background: linear-gradient(135deg, #2c5983, #13055f);
+  }
+
+.play-btn-inner {
+  height: 50px;
+  width: 50px;
+  border: 2px solid transparent;
+  border-radius: 50%;
+  background-color: #000;
+}
+
+  .play-btn-inner i {
+    padding: 15px 19px;
+    font-size: 16px;
+    cursor: pointer;
+  }

@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+
+<head>
+  <meta charset="UTF-8">
+  <title> My Account Page Form </title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    table {
+      font-family: arial, sans-serif;
+      border-collapse: collapse;
+      width: 100%;
+    }
+
+    td, th {
+      border: 1px solid #dddddd;
+      text-align: left;
+      padding: 8px;
+    }
+
+    tr:nth-child(even) {
+      background-color: #dddddd;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="container">
+    <div class="title">Wallet</div>
+    <br>
+    <div class="content">
+      <div class="container2">
+        <form action="#">
+          <div><strong align='center'><font size='6' color='white'>Balance: </font></strong></div>
+          <div><strong align='center'><font size='6' color='white'>{{wallet}} $</font></strong></div>
+          <div class="button">
+            <router-outlet></router-outlet>
+            <input  type="submit" value="Top-up" href="javascript:void(0)" [routerLink]="['/topup']">
+          </div>
+        </form>
+      </div>
+    </div>
+    <br>
+    <h2>Wallet history</h2>
+    <br>
+    <table>
+      <tr>
+        <th>TransactionID</th>
+        <th>Date</th>
+        <th>Movements</th>
+      </tr>
+      <tr>
+        <td>f4184fc5</td>
+        <td>2022-01-17</td>
+        <td>+33.00$</td>
+      </tr>
+      <tr>
+        <td>a1075db9</td>
+        <td>2021-12-31</td>
+        <td>+50.00$</td>
+      </tr>
+      <tr>
+        <td>4ce18f4c</td>
+        <td>2021-08-15</td>
+        <td>+100.00$</td>
+      </tr>
+    </table>
+  </div>
+
+  <!-- TOP UP MODAL
+  <div class="modal fade" id="updateEmployeeModal" tabindex="-1" role="dialog" aria-labelledby="employeeEditModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="updateEmployeeModalLabel">Edit Employee {{editEmployee?.name}}</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <form #editForm="ngForm">
+            <div class="form-group">
+              <label for="name">Name</label>
+              <input type="text" ngModel="{{editEmployee?.name}}" name="name" class="form-control" id="name" aria-describedby="emailHelp" placeholder="Name">
+            </div>
+            <input type="hidden" ngModel="{{editEmployee?.id}}" name="id" class="form-control" id="id" placeholder="Email">
+            <input type="hidden" ngModel="{{editEmployee?.employeeCode}}" name="userCode" class="form-control" id="userCode" placeholder="Email">
+            <div class="form-group">
+              <label for="email">Email Address</label>
+              <input type="email" ngModel="{{editEmployee?.email}}" name="email" class="form-control" id="email" placeholder="Email">
+            </div>
+            <div class="form-group">
+              <label for="phone">Job title</label>
+              <input type="text" ngModel="{{editEmployee?.jobTitle}}" name="jobTitle" class="form-control" id="jobTitle" placeholder="Job title">
+            </div>
+            <div class="form-group">
+              <label for="phone">Phone</label>
+              <input type="text" ngModel="{{editEmployee?.phone}}" name="phone" class="form-control" id="phone" name="phone" placeholder="Phone">
+            </div>
+            <div class="form-group">
+              <label for="phone">Image URL</label>
+              <input type="text" ngModel="{{editEmployee?.imageUrl}}" name="imageUrl" class="form-control" id="imageUrl" placeholder="Image URL">
+            </div>
+            <div class="modal-footer">
+              <button type="button" id="" data-dismiss="modal" class="btn btn-secondary">Close</button>
+              <button (click)="onUpdateEmloyee(editForm.value)" data-dismiss="modal" class="btn btn-primary">Save changes</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+    -->
+
+
+
+</body>
+</html>
+
+<!--
+<div class="container" *ngIf="currentUser; else loggedOut">
+  <header class="jumbotron">
+    <h3>
+      <strong>{{ currentUser.username }}</strong> Profile
+    </h3>
+  </header>
+  <p>
+    <strong>Token:</strong>
+    {{ currentUser.accessToken.substring(0, 20) }} ...
+    {{ currentUser.accessToken.substr(currentUser.accessToken.length - 20) }}
+  </p>
+  <p>
+    <strong>Email:</strong>
+    {{ currentUser.email }}
+  </p>
+  <strong>Roles:</strong>
+  <ul>
+    <li *ngFor="let role of currentUser.roles">
+      {{ role }}
+    </li>
+  </ul>
+</div>
+
+<ng-template #loggedOut>
+  Please login.
+</ng-template>
+  -->

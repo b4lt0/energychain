@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+
+<head>
+  <meta charset="UTF-8">
+  <title> Create Package </title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    table {
+      font-family: arial, sans-serif;
+      border-collapse: collapse;
+      width: 100%;
+    }
+
+    td, th {
+      border: 1px solid #dddddd;
+      text-align: left;
+      padding: 8px;
+    }
+
+    tr:nth-child(even) {
+      background-color: #dddddd;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="container">
+
+    <div class="title"><img src="../assets/add.png" style="width:25px;height:25px;">  Create Package</div>
+    <div class="content">
+      <form
+            name="form"
+            (ngSubmit)="onSubmit()"
+            #f="ngForm"
+            >
+        <div class="user-details">
+          <div class="input-box">
+            <span class="details">Title</span>
+            <input class="form-control"
+                   name="title"
+                   [(ngModel)]="form.title"
+                   type="text"
+                   placeholder="Enter your package title"
+                   #title="ngModel"
+                   required>
+          </div>
+          <div class="input-box">
+            <span class="details">Description</span>
+            <input class="form-control"
+                   name="title"
+                   [(ngModel)]="form.description"
+                   type="text"
+                   placeholder="Enter your package description"
+                   #description="ngModel"
+                   required>
+          </div>
+          <div class="input-box">
+            <span class="details">Num. MWatt</span>
+            <input class="form-control"
+                   name="title"
+                   [(ngModel)]="form.quantity"
+                   type="number"
+                   placeholder="Enter your package n. watt"
+                   #quantity="ngModel"
+                   required>
+          </div>
+          <div class="input-box">
+            <span class="details">Price</span>
+            <input class="form-control"
+                   name="title"
+                   [(ngModel)]="form.price"
+                   type="number"
+                   placeholder="Enter your package price"
+                   #price="ngModel"
+                   required>
+          </div>
+          <div class="input-box">
+            <span class="details">Type</span>
+            <input class="form-control"
+                   name="type"
+                   [(ngModel)]="form.type"
+                   type="text"
+                   placeholder="0-Green , 1-Other"
+                   #type="ngModel"
+                   required>
+          </div>
+          
+        </div>
+
+        <div class="button">
+          <input type="submit" value="Publish">
+          <br>
+
+          <div class="options">
+            <a href="javascript:void(0)" [routerLink]="['/search']">Back</a>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+  <br>
+</body>
+</html>

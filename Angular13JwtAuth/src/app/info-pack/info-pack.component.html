@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+  <meta charset="UTF-8">
+  <title> Package Info </title>
+  
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    table {
+      font-family: arial, sans-serif;
+      border-collapse: collapse;
+      width: 100%;
+    }
+
+    td, th {
+      border: 1px solid #dddddd;
+      text-align: left;
+      padding: 8px;
+    }
+
+    tr:nth-child(even) {
+      background-color: #dddddd;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="title"><img src="../assets/info.png" style="width:25px;height:25px;">  Package Info</div>
+    <br>
+    
+      <div class="container2">
+        <div><font size='6' color='white'><strong>Title:</strong> {{packetInfo.title}}</font></div>
+        <div><font size='6' color='white'><strong>Description:</strong> {{packetInfo.description}}</font></div>
+        <div><font size='6' color='white'><strong>Price:</strong> {{packetInfo.price}}</font></div>
+        <div><font size='6' color='white'><strong>Num. MWatt:</strong> {{packetInfo.quantity}}</font></div>
+      </div>
+      <br>
+      <form
+            name="form"
+            (ngSubmit)="onSubmit()"
+            #f="ngForm"
+            action="#"
+            onsubmit="if(document.getElementById('agree').checked) { return true; } else { alert('Please indicate that you have read and agree to the Terms and Conditions and Privacy Policy'); return false; }"
+            >
+        <input type="checkbox" name="checkbox" value="check" id="agree" /> I have read and agree to the Terms and Conditions and Privacy Policy
+        <div class="button">
+          <input type="submit" value="Buy">
+        </div>
+      </form>
+      <!-- <div class="options" style="text-align:center"><a href="#">Delete</a></div> -->
+     
+  </div>
+</body>
+</html>

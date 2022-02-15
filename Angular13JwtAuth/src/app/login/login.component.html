@@ -1,0 +1,216 @@
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sign Up Page </title>
+  <!-- here comes styling -->
+
+  <style>
+    ::placeholder {
+      color: black;
+      opacity: 1;
+    }
+
+    html {
+      background: url(images_blockchain5.jpg) no-repeat;
+      max-width: auto;
+      height: auto;
+      color: white;
+      font-family: Arial, Helvetica, sans-serif;
+    }
+
+    body {
+      padding-top: 10vh;
+    }
+
+    .container {
+      background: blue;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      margin: auto;
+      height: 435px;
+      width: 350px;
+      box-shadow: -3px -2px 6px #6c6565, 7px 9px 25px #0b0b0b;
+    }
+
+    form {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      font-family: arial, sans-serif;
+    }
+
+    input {
+      height: 30px;
+      border: 2px solid darkblue;
+      border-radius: 5px;
+      background: white;
+      color: blue;
+      text-align: center;
+      outline: none;
+      font-size: 15px;
+    }
+
+    .form-item {
+      margin: 0 auto;
+      padding-bottom: 10px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      width: 90%;
+    }
+
+      .form-item input {
+        margin: 5px;
+        width: 100%;
+      }
+
+    .accept-box {
+      display: flex;
+      align-items: center;
+      margin: auto;
+      font-size: 15px;
+    }
+
+    a {
+      color: blue;
+    }
+
+      a:hover {
+        color: blue;
+      }
+
+    .form-btns {
+      display: flex;
+      flex-direction: column;
+      padding: 10px 0;
+    }
+
+      .form-btns button {
+        margin: auto;
+        font-size: 20px;
+        padding: 8px;
+        width: 280px;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        color: rgb(75, 61, 61);
+        background: linear-gradient(-135deg, #f79055, #b34c10);
+      }
+
+        .form-btns button:disabled {
+          cursor: not-allowed;
+          background: linear-gradient(-135deg, #f79055, #b34c10);
+          color: rgb(131, 120, 120) !important;
+        }
+
+        .form-btns button:hover {
+          background: linear-gradient(-135deg, #f79055, #b34c10);
+          color: antiquewhite;
+        }
+
+    .options {
+      padding-top: 15px;
+      margin: auto;
+      font-size: 13px;
+      color: black;
+    }
+
+    p {
+      font-size: 12px;
+    }
+
+    .pwd-format {
+      position: relative;
+      color: rgb(65, 62, 62);
+      background: linear-gradient(-135deg, #f79055, #b34c10);
+      font-size: 11px;
+      width: 160px;
+      padding: 5px;
+      border-radius: 5px;
+      top: 112px;
+      right: -81px;
+      z-index: 2;
+      display: none;
+    }
+
+    .logo img {
+      margin-left: -30px;
+      margin-top: -100px;
+      height: 20%;
+      width: 20%;
+    }
+  </style>
+
+</head>
+
+
+
+<div class="col-md-12">
+  <div class="card card-container">
+    <img id="profile-img"
+         src="//ssl.gstatic.com/accounts/ui/avatar_2x.png"
+         class="profile-img-card" />
+    <form *ngIf="!isLoggedIn"
+          name="form"
+          (ngSubmit)="f.form.valid && onSubmit()"
+          #f="ngForm"
+          novalidate>
+      <div class="form-group">
+        <label for="username">Username</label>
+        <input type="text"
+               class="form-control"
+               name="username"
+               [(ngModel)]="form.username"
+               required
+               #username="ngModel" />
+        <div class="alert alert-danger"
+             role="alert"
+             *ngIf="username.errors && f.submitted">
+          Username is required!
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="password">Password</label>
+        <input type="password"
+               class="form-control"
+               name="password"
+               [(ngModel)]="form.password"
+               required
+               minlength="6"
+               #password="ngModel" />
+        <div class="alert alert-danger"
+             role="alert"
+             *ngIf="password.errors && f.submitted">
+          <div *ngIf="password.errors['required']">Password is required</div>
+          <div *ngIf="password.errors['minlength']">
+            Password must be at least 6 characters
+          </div>
+        </div>
+      </div>
+      <div class="form-group">
+        <button class="btn btn-primary btn-block">
+          Login
+        </button>
+        <div class="options">
+          Don't have an account? <a href="javascript:void(0)" [routerLink]="['/register']">Sign up here</a>
+        </div>
+      </div>
+      <div class="form-group">
+        <div class="alert alert-danger"
+             role="alert"
+             *ngIf="f.submitted && isLoginFailed">
+          Login failed: {{ errorMessage }}
+        </div>
+      </div>
+    </form>
+
+    <div class="alert alert-success" *ngIf="isLoggedIn">
+      Logged in.
+    </div>
+    <div class="btn-group" *ngIf="isLoggedIn">
+      <div class="signup-btn" href="javascript:void(0)" [routerLink]="['/search']">Search Packet</div>
+    </div>
+  </div>
+</div>

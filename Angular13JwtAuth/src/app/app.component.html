@@ -1,0 +1,103 @@
+
+
+  <head>
+    <title>EnergyChain</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+  </head>
+
+  <div class="header" *ngIf="!isLoggedIn">
+    <div class="navbar">
+      <div class="logo">
+        <a href="#"><img src="assets/2.png"></a>
+      </div>
+      <div class="menu" >
+        <ul>
+          <li href="javascript:void(0)" [routerLink]="['/home']">Home</li>
+          <li>About</li>
+          <li>Services</li>
+        </ul>
+      </div>
+      <div class="login-btn" href="javascript:void(0)" [routerLink]="['/login']">Login</div>
+    </div>
+  </div>
+
+  <div class="header" *ngIf="isLoggedIn">
+    <div class="navbar">
+      <div class="logo">
+        <a href="#"><img src="assets/2.png"></a>
+      </div>
+      <div class="menu">
+        <ul>
+          <!-- <li href="javascript:void(0)" [routerLink]="['/home']">Home</li> -->
+          <li href="javascript:void(0)" [routerLink]="['/search']">Search</li>
+          <li href="javascript:void(0)" [routerLink]="['/create']">Create</li>
+         <!-- <li href="javascript:void(0)" [routerLink]="['/info']">InfoTest</li> -->
+          <li href="javascript:void(0)" [routerLink]="['/profile']">Wallet</li>
+          <li href="javascript:void(0)" [routerLink]="['/settings']">MyAccount</li>
+        </ul>
+      </div>
+      <div class="login-btn" href="javascript:void(0)" [routerLink]="['/home']" (click)="logout()">Logout</div>
+    </div>
+  </div>
+
+<body>
+  
+</body>
+
+<!--
+    <ul class="navbar" *ngIf="isLoggedIn">
+      <li class="nav-item">
+        <a href="/profile" class="nav-link" routerLink="profile">{{ username }}</a>
+      </li>
+      <li class="nav-item">
+        <a href="/home" class="nav-link" (click)="logout()">LogOut</a>
+      </li>
+    </ul>
+  -->
+
+    <div id="app">
+
+      <!--
+    <nav class="navbar">
+      <a href="#" class="navbar-brand">bezKoder</a>
+      <ul class="navbar-nav mr-auto" routerLinkActive="active">
+        <li class="nav-item">
+          <a href="/home" class="nav-link" routerLink="home">Home </a>
+        </li>
+        <li class="nav-item" *ngIf="showAdminBoard">
+          <a href="/admin" class="nav-link" routerLink="admin">Admin Board</a>
+        </li>
+        <li class="nav-item" *ngIf="showModeratorBoard">
+          <a href="/mod" class="nav-link" routerLink="mod">Moderator Board</a>
+        </li>
+        <li class="nav-item">
+          <a href="/user" class="nav-link" *ngIf="isLoggedIn" routerLink="user">User</a>
+        </li>
+      </ul>
+
+      <ul class="navbar-nav ml-auto" *ngIf="!isLoggedIn">
+        <li class="nav-item">
+          <a href="/register" class="nav-link" routerLink="register">Sign Up</a>
+        </li>
+        <li class="nav-item">
+          <a href="/login" class="nav-link" routerLink="login">Login</a>
+        </li>
+      </ul>
+
+      <ul class="navbar-nav ml-auto" *ngIf="isLoggedIn">
+        <li class="nav-item">
+          <a href="/profile" class="nav-link" routerLink="profile">{{ username }}</a>
+        </li>
+        <li class="nav-item">
+          <a href class="nav-link" (click)="logout()">LogOut</a>
+        </li>
+      </ul>
+    </nav>
+      -->
+
+      <div class="container">
+        <router-outlet></router-outlet>
+      </div>
+    </div>
+

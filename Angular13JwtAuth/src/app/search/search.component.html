@@ -1,0 +1,106 @@
+
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+
+
+<head>
+  <meta charset="UTF-8">
+  <title> Prova </title>
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+<body>
+
+  <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
+
+
+  <div class="container" id="main-container">
+
+    <div class="title">EnergyChain</div>
+
+
+    <br />
+    <input type="search" #packetID="ngModel" ngModel
+           name="packetID" id="searchID" class="form-control mr-sm-2" placeholder="Search packets...">
+
+
+
+    <div class="card-body">
+      <div class="float-right btn-group btn-group-sm">
+        <input type="submit" (click)="findPacketbyID(packetID.value)" class="btn btn-primary tooltips" value="Search">
+      </div>
+    </div>
+
+
+
+    <router-outlet></router-outlet>
+
+    <div class="row" *ngIf="search">
+      <div class="col-md-6 col-xl-3">
+        <div class="card-body row">
+          <div class="col-6">
+            <router-outlet></router-outlet>
+            <a (click)="navigate2(packetFound.id)"><img src="../assets/2.png" alt="" class="img-fluid rounded-circle w-40"></a>
+          </div>
+          <div class="col-0 card-title align-self-center mb-0">
+            <h5>{{packetFound.title}}</h5>
+            <p class="m-0">User: {{packetFound.owner.username}}</p>
+          </div>
+        </div>
+        <ul class="list-group list-group-flush">
+          <li class="list-group-item"><i class="fa fa-usd float-right"></i>Price : {{packetFound.price}}</li>
+          <li class="list-group-item"><i class="fa fa-lightbulb-o float-right"></i>N. M.Watt : {{packetFound.quantity}}</li>
+          <li class="list-group-item"><i class="fa fa-leaf float-right"></i>Type : {{packetFound.type}}</li>
+        </ul>
+        <div class="card-body">
+          <div class="float-right btn-group btn-group-sm">
+
+            <a (click)="navigate1(packetFound.id)" class="btn btn-primary tooltips" data-placement="top" data-original-title="Edit"><i class="fa fa-pencil"></i> </a>
+
+
+            <a (click)="onDeletePacket(packetFound.id)" class="btn btn-secondary tooltips" data-placement="top" data-original-title="Delete"><i class="fa fa-times"></i></a>
+            <router-outlet></router-outlet>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+    <div class="row" *ngIf="!search">
+
+      <div class="col-md-6 col-xl-3" *ngFor="let packet of packets">
+        <div class="card-body row">
+          <div class="col-6">
+            <a (click)="navigate2(packet.id)"><img src="../assets/2.png" alt="" class="img-fluid rounded-circle w-40"></a>
+          </div>
+          <div class="col-0 card-title align-self-center mb-0">
+            <h5>{{packet.title}}</h5>
+            <p class="m-0">User: {{packet.owner.username}}</p>
+          </div>
+        </div>
+        <ul class="list-group list-group-flush">
+          <li class="list-group-item"><i class="fa fa-usd float-right"></i>Price : {{packet.price}}</li>
+          <li class="list-group-item"><i class="fa fa-lightbulb-o float-right"></i>N. M.Watt : {{packet.quantity}}</li>
+          <li class="list-group-item"><i class="fa fa-leaf float-right"></i>Type : {{packet.type}}</li>
+        </ul>
+        <div class="card-body">
+          <div class="float-right btn-group btn-group-sm">
+            <a (click)="navigate1(packet.id)" class="btn btn-primary tooltips" data-placement="top" data-original-title="Edit"><i class="fa fa-pencil"></i> </a>
+
+            <a (click)="onDeletePacket(packet.id)" class="btn btn-secondary tooltips" data-placement="top" data-original-title="Delete"><i class="fa fa-times"></i></a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="card-body">
+      <div class="float-right btn-group btn-group-sm">
+        <input type="submit" href="javascript:void(0)" [routerLink]="['/create']" class="btn btn-primary tooltips" value="Create New Packet">
+      </div>
+    </div>
+
+
+  </div>
+
+
+
