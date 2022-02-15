@@ -1,0 +1,34 @@
+  
+<div class="container">
+  <div class="card">
+    <h3 class="text-center"> Packet List</h3><div class="card-body">
+      <table class="table table-striped">
+
+
+        <thead>
+        <th>Id</th>
+        <th>description</th>
+        <th>user</th>
+        <th>quantity</th>
+        <th>price</th>
+        <th>type</th>
+        <th>transaction</th></thead>
+        <tbody><tr *ngFor="let packet of packets">
+          <td> {{ packet.id}}</td>
+          <td> {{ packet.description}}</td>
+          <td> {{ packet.owner}}</td>
+          <td> {{ packet.quantity}}</td>
+          <td> {{ packet.price}}</td>
+          <td> {{ packet.type}}</td>
+         
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+
+
+
+
+

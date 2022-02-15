@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+  <meta charset="UTF-8">
+  <title> Personal Information Form </title>
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+
+<body>
+
+  <table>
+    <tr height='20%'>
+      <td colspan='5'>
+      </td>
+    </tr>
+    <tr height='60'>
+      <td width='3%' rowspan='4'>
+      </td>
+      <td width='31%' height='80%' rowspan='5'>
+        <form>
+          <div class="container">
+            <table>
+              <tr>
+                <td>
+
+                  <div class="title">Profile Picture</div>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <div class="card-body text-center"></div>
+                    <!-- Profile picture image-->
+                    <br>
+                </td>
+              </tr>
+              <tr>
+                <td align='center'>
+                  <img class="img-account-profile rounded-circle mb-2" src="http://bootdey.com/img/Content/avatar/avatar1.png" alt="" align='center'>
+                  <!-- Profile picture help block-->
+                </td>
+              </tr>
+              <tr>
+                <td align='center'>
+                  <br>
+                  <p align='center'>JPG or PNG no larger than 5 MB</p>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <!-- Profile picture upload button-->
+                  <div class="button">
+                    <input type="submit" value="Upload new image">
+                  </div>
+                </td>
+              </tr>
+
+            </table>
+          </div>
+        </form>
+
+      </td>
+      <td width='3%' rowspan='5'>
+      </td>
+      <td rowspan='5' width='70%' height='70%'>
+        <div class="container">
+          <div class="title">Personal Information</div>
+          <div class="content">
+            <div class="input-box">
+              <span class="details">Id</span>
+              <input type="text"
+                     class="form-control"
+                     name="id"
+                     placeholder="{{id}}"
+                     required
+                     disabled>
+            </div>
+            <form
+                  name="form"
+                  (ngSubmit)="onSubmit()"
+                  #f="ngForm">
+
+              <div class="user-details">
+                <div class="input-box">
+
+                  <span class="details" for="username">Username</span>
+                  <input
+                         class="form-control"
+                         name="username"
+                         [(ngModel)]="form.username"
+                         type="text"
+                         placeholder={{name}}
+                         #username="ngModel"
+                         required />
+                </div>
+
+                <div class="input-box">
+                  <span class="details">Email</span>
+                  <input type="text" placeholder="{{email}}" disabled>
+                </div>
+
+                <div class="input-box">
+                  <span class="details">Password</span>
+                  <input class="form-control"
+                         name="password"
+                         [(ngModel)]="form.password"
+                         type="password"
+                         placeholder="*******"
+                         #password="ngModel"
+                         required />
+                </div>
+
+                <div class="input-box">
+                  <span class="details">Role</span>
+                  <input type="text" placeholder="Admin" disabled>
+                </div>
+              </div>
+
+              <div class="button">
+                <input type="submit" value="Update">
+              </div>
+
+            </form>
+
+            <div class="button" >
+              <input type="submit" value="Delete Account" href="javascript:void(0)" [routerLink]="['/delete']">
+            </div>
+
+          </div>
+        </div>
+      </td>
+      <td width='3%' rowspan='5'>
+      </td>
+    </tr>
+    <tr height='20%'>
+      <td colspan='5'>
+      </td>
+    </tr>
+  </table>
+</body>
+</html>
