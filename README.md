@@ -14,7 +14,7 @@ It aims to build a _transparent_, _secure_ and **_automated_** market for the ex
 7. the transaction is saved on the Ethereum blockchain and _you receive your energy_ by the electricity grid;<br /><br />
 8. **you saved money** (8 cents per kW/h, think about that!), **the seller earns it** (12 cents) **and everyone benefits because this energy is not wasted**.<br /><br />
 
-This scenario is extended to every **prosumer**, you can sell if you have a big or small plant, some photovoltaic panels on your roof, an entire photovoltaic park, a wind turbine, a wind park or, we hope not, a petrol or carbon generator.<br />
+This scenario is extended to every **prosumer**, you can sell if you have a big or small plant, some photovoltaic panels on your roof, an entire photovoltaic park, a wind turbine, a wind park or, we hope not, a petrol or carbon generator.<br /><br />
 The **cooperation** between the players will get advantages to each of them in terms of **energy availability**, **money saving** and **environmental sustainability** of the energy production process. 
-_Thus in line with the blockchain's ideals._<br />
+_Thus in line with the blockchain's ideals._<br /><br />
 Our system operates in the margin between who produces and who uses electricity and aims to _minimize wastes_.
