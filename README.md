@@ -1,5 +1,6 @@
 # energychain
 ## Software Engineering project work
+As tech stack we worked with _**Angular**->**Springboot**->**MySQL**->**Web3j**->**Solidity**_
 
 We've developed a _prototype_ for a **blockchain based application**.<br />
 It aims to build a _transparent_, _secure_ and **_automated_** market for the exchange of electricity.<br /><br />
